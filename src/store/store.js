@@ -1,14 +1,17 @@
 import Vue from "vue";
 import Vuex from 'vuex';
 
-import {tabers, app_name} from '../config/config.js';
+import {Tabers, APP_NAME} from '../config/config.js';
+
+import {NewsList} from "./news";
 
 Vue.use(Vuex);
 
 const store = new Vuex.Store({
     state: {
-        app_name,
-        tabers
+        APP_NAME,
+        Tabers,
+        NewsList,
     }
 });
 

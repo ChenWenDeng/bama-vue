@@ -1,0 +1,5 @@
+const NewsList = [];
+
+export {
+    NewsList
+}

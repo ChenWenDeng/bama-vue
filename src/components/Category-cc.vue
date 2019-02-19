@@ -1,8 +1,8 @@
 <template>
     <van-row>
         <van-col class="category-item-cc" v-for="(value, key) in data" :key="key" span="6">
-            <van-icon :name="value.image" :info="value.info"/>
-            <span>{{value.title}}</span>
+            <van-icon :name="value.image" :info="value.info"  @click="categoryItemClick(value)"/>
+            <span @click="categoryItemClick(value)">{{value.title}}</span>
         </van-col>
     </van-row>
 </template>
@@ -23,6 +23,20 @@
         data() {
             return {
 
+            }
+        },
+
+        methods:{
+            categoryItemClick: function(props){
+                let bool = false;
+
+                if (typeof this.$parent.categoryItemClick == 'function'){
+                    bool = this.$parent.categoryItemClick(props);
+                }
+
+                if (!bool){
+                    console.log('请使用 categoryItemClick(props) 来回调！ 并且返回true');
+                }
             }
         }
     }

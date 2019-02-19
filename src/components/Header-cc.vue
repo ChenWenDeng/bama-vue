@@ -50,15 +50,27 @@
 
         methods: {
             onClickLeft() {
-                if (this.left_icon != '') {
-                    console.log('onClickLeft')
-                } else {
-                    this.$route.go(-1);
+                let bool = false;
+
+                if (typeof this.$parent.onClickLeft == 'function'){
+                    bool = this.$parent.onClickLeft();
+                }
+
+                if (!bool && !this.left_icon) {
+                    console.log('自动返回上一页~！');
+                    this.$router.back(-1);
                 }
             },
             onClickRight() {
-                Toast('按钮');
+                let bool = false;
 
+                if (typeof this.$parent.onClickRight == 'function'){
+                    bool = this.$parent.onClickRight();
+                }
+
+                if (!bool) {
+                    console.log('未作处理~！');
+                }
             }
         }
     };

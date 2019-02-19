@@ -9,5 +9,6 @@
     font-size: 16px;
     background-color: #f8f8f8;
     -webkit-font-smoothing: antialiased;
+    font-family: Arial, Helvetica, 'STHeiti STXihei', 'Microsoft YaHei', Tohoma, sans-serif;
   }
 </style>
