@@ -1,11 +1,17 @@
 <template>
-    <van-nav-bar :title="title" :left-text="left_text" left-arrow>
-        <van-icon v-if="right_name" :name="right_name" slot="right"/>
+    <van-nav-bar v-if="left_icon" :title="title" @click-left="onClickLeft" @click-right="onClickRight">
+        <van-icon v-if="left_icon" :name="left_icon" slot="left" />
+        <van-icon v-if="right_icon" :name="right_icon" slot="right" />
+    </van-nav-bar>
+
+    <van-nav-bar v-else :title="title" :left-text="left_text" left-arrow @click-left="onClickLeft" @click-right="onClickRight">
+        <van-icon v-if="right_icon" :name="right_icon" slot="right" />
     </van-nav-bar>
 </template>
 
+
 <script>
-    import {NavBar} from 'vant';
+    import {NavBar, Icon, Toast} from 'vant';
 
     export default {
         props: {
@@ -13,7 +19,11 @@
                 type: String,
                 required: true
             },
-            right_name: {
+            left_icon:{
+                type: String,
+                default: ''
+            },
+            right_icon: {
                 type: String,
                 default: ''
             },
@@ -24,21 +34,31 @@
         },
 
         components: {
-            [NavBar.name]: NavBar
+            [NavBar.name]: NavBar,
+            [Icon.name]: Icon
         },
 
         data() {
             return {
-                tabers: this.$store.state.tabers
+
             }
+        },
+
+        created: function(){
+
         },
 
         methods: {
             onClickLeft() {
-                Toast('返回');
+                if (this.left_icon != '') {
+                    console.log('onClickLeft')
+                } else {
+                    this.$route.go(-1);
+                }
             },
             onClickRight() {
                 Toast('按钮');
+
             }
         }
     };

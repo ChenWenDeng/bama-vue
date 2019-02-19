@@ -1,11 +1,7 @@
 <template>
-
     <van-tabbar v-model="active">
-        <van-tabbar-item v-for="taber in tabers" :icon="taber.icon" :info="taber.info">
-            {{taber.name}}
-        </van-tabbar-item>
+        <van-tabbar-item v-for="taber in tabers" :icon="taber.icon" :info="taber.info">{{taber.name}}</van-tabbar-item>
     </van-tabbar>
-
 </template>
 
 <script>

@@ -5,6 +5,9 @@ const tabers = [
     {name: '个人中心', icon: 'contact', path: '/user'}
 ];
 
+const app_name = '爸妈天天乐';
+
 export {
-    tabers
+    tabers,
+    app_name
 }
