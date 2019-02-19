@@ -29,6 +29,10 @@
 </script>
 
 <style type="less">
+    .van-row{
+        background: white;
+    }
+
     .category-item-cc{
         text-align: center;
         margin: 6px 0;
@@ -41,8 +45,8 @@
     .category-item-cc span{
         display: block;
         padding: 0 5px;
-        font-size: 16px;
-        line-height: 16px;
+        font-size: 12px;
+        line-height: 14px;
     }
 
 </style>
