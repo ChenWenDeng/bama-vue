@@ -1,5 +1,5 @@
-const NewsList = [];
+const newsList = [];
 
 export {
-    NewsList
+    newsList
 }

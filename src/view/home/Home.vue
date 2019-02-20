@@ -10,7 +10,7 @@
 
         <category-cc :data="categoryList"></category-cc>
 
-        <news-list-cc :data="1"></news-list-cc>
+        <news-list-cc :data="circleRecommend"></news-list-cc>
 
         <footer-cc></footer-cc>
     </div>
@@ -20,7 +20,7 @@
     import Vue from 'vue';
     import {Swipe, SwipeItem, Lazyload} from 'vant';
     import category from '../../components/Category-cc.vue';
-    import {Carousel, CategoryList} from '../../store/index.js';
+    import {carousel, categoryList} from '../../store/index.js';
     import NewsListCc from "../../components/News-list-cc";
 
     // options 为可选参数，无则不传
@@ -38,9 +38,12 @@
             return {
                 title: this.$store.state.APP_NAME,
 
-                images: Carousel,
+                images: carousel,
 
-                categoryList: CategoryList,
+                categoryList: categoryList,
+
+                circleRecommend: this.$store.state.circleRecommend
+
             };
         },
 

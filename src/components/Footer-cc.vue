@@ -15,7 +15,7 @@
 
         data() {
             return {
-                tabers: this.$store.state.Tabers,
+                tabers: this.$store.state.tabers,
                 active: 0
             }
         }
