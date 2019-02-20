@@ -5,15 +5,14 @@
               :error.sync="error"
               error-text="请求失败，点击重新加载"
               @load="onLoad">
-        <div v-for="(value, key) in data" :key="key">
-            <img class="news-list-thumbnail-cc" v-lazy="value.thumbnail">
-        </div>
+        <news-item-cc v-for="(item, key) in data" :key="key" :item="item"></news-item-cc>
     </van-list>
 </template>
 
 <script>
     import Vue from 'vue';
     import {List, Lazyload} from 'vant';
+    import NewsItem from './News-item-cc.vue';
 
     Vue.use(List);
     Vue.use(Lazyload);
@@ -22,6 +21,7 @@
         props: ['data'],
         components: {
             [List.name]: List,
+            'news-item-cc': NewsItem
         },
 
         data() {
@@ -58,8 +58,9 @@
 </script>
 
 <style type="text/css">
-    .news-list-thumbnail-cc{
-        width: 100%;
-        height: 240px;
+
+    .van-list{
+        background: #f3f3f3;
     }
+
 </style>

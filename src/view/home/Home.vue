@@ -10,7 +10,13 @@
 
         <category-cc :data="categoryList"></category-cc>
 
-        <news-list-cc :data="circleRecommend"></news-list-cc>
+        <div class="recommend-cc">
+            <div class="recommend-title-cc">
+                <h3 class="recommend-left-cc">每周话题</h3>
+                <p class="recommend-right-cc">更多话题</p>
+            </div>
+            <news-list-cc :data="circleRecommend"></news-list-cc>
+        </div>
 
         <footer-cc></footer-cc>
     </div>
@@ -20,7 +26,6 @@
     import Vue from 'vue';
     import {Swipe, SwipeItem, Lazyload} from 'vant';
     import category from '../../components/Category-cc.vue';
-    import {carousel, categoryList} from '../../store/index.js';
     import NewsListCc from "../../components/News-list-cc";
 
     // options 为可选参数，无则不传
@@ -36,13 +41,13 @@
 
         data() {
             return {
-                title: this.$store.state.APP_NAME,
+                title: this.$store.state.config.APP_NAME,
 
-                images: carousel,
+                images: this.$store.state.index.carousel,
 
-                categoryList: categoryList,
+                categoryList: this.$store.state.index.categoryList,
 
-                circleRecommend: this.$store.state.circleRecommend
+                circleRecommend: this.$store.state.index.circleRecommend
 
             };
         },
@@ -67,6 +72,29 @@
 
 </script>
 
-<style lang="less">
+<style>
 
+    .recommend-cc{
+        margin-top: 8px;
+        background: white;
+    }
+
+    .recommend-title-cc{
+        height: 40px;
+        line-height: 40px;
+        padding: 4px 8px;
+        overflow: hidden;
+        font-size: 0.8rem;
+    }
+
+    .recommend-left-cc{
+        float: left;
+        margin: 0;
+        font-weight: 500;
+    }
+
+    .recommend-right-cc{
+        margin: 0;
+        float: right;
+    }
 </style>
