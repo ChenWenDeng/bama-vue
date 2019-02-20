@@ -13,13 +13,6 @@
 
     }
 
-    html {
-        overflow-x: hidden;
-        overflow-y: auto;
-
-    }
-
-
     ::-webkit-scrollbar {
         display: none
     }

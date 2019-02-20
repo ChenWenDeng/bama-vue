@@ -1,4 +1,4 @@
-const Tabers = [
+const tabers = [
     {name: '首页', icon: 'wap-home', path: '/home'},
     {name: '更多资讯', icon: 'newspaper-o', path: '/news'},
     {name: '答题', icon: 'orders-o', path: ''},
@@ -8,6 +8,6 @@ const Tabers = [
 const APP_NAME = '爸妈天天乐';
 
 export {
-    Tabers,
+    tabers,
     APP_NAME
 }
