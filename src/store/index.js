@@ -54,8 +54,6 @@ const CategoryList = [{
     "more": null
 }];
 
-
-
 export {
     Carousel,
     CategoryList

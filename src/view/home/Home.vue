@@ -10,6 +10,8 @@
 
         <category-cc :data="categoryList"></category-cc>
 
+        <news-list-cc :data="1"></news-list-cc>
+
         <footer-cc></footer-cc>
     </div>
 </template>
@@ -19,6 +21,7 @@
     import {Swipe, SwipeItem, Lazyload} from 'vant';
     import category from '../../components/Category-cc.vue';
     import {Carousel, CategoryList} from '../../store/index.js';
+    import NewsListCc from "../../components/News-list-cc";
 
     // options 为可选参数，无则不传
     Vue.use(Lazyload, '');
@@ -27,7 +30,8 @@
         components: {
             [Swipe.name]: Swipe,
             [SwipeItem.name]: SwipeItem,
-            'category-cc': category
+            'category-cc': category,
+            'news-list-cc': NewsListCc,
         },
 
         data() {
