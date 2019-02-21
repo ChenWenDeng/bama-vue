@@ -4,10 +4,6 @@ const config = {
     UPLOAD_URL: 'https://klzz.hualinginfo.com/upload/'
 };
 
-
-
-
 export {
-    tabers,
     config
 }

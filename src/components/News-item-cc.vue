@@ -15,7 +15,7 @@
             </div>
         </div>
         <div class="tag">
-            <van-tag v-for="(value, key) in tag" :key="key" color="#f2826a">{{ value }}</van-tag>
+            <van-tag v-for="(value, key) in tag" :key="key" :color="tagColor(key)">{{ value }}</van-tag>
         </div>
     </div>
 </template>
@@ -40,6 +40,13 @@
                 hits: this.item.post_hits,
                 comment_count: this.item.comment_count,
                 tag: this.item.tag,
+
+                color: {
+                    default: '#f2826a',
+                    category: '#5bc0de',
+                    top:'#AEDD81',
+                    recommend: '#f34612'
+                }
             }
         },
 
@@ -65,6 +72,9 @@
                 //     }
                 // }, 500);
             },
+            tagColor: function (key) {
+                return this.color[key] ? this.color[key] : this.color.default;
+            }
         }
     }
 </script>

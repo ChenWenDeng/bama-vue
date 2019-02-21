@@ -6,6 +6,7 @@
 
 <script>
     import {Tabbar, TabbarItem} from 'vant';
+    import {mapGetters} from 'vuex';
 
     export default {
         components: {
@@ -13,10 +14,16 @@
             [TabbarItem.name]: TabbarItem
         },
 
+        computed: {
+            ...mapGetters('footer', [
+                'tabers',
+                'active'
+            ])
+        },
+
         data() {
             return {
-                tabers: this.$store.state.footer.tabers,
-                active: 0
+
             }
         }
     };

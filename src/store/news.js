@@ -1,5 +1,0 @@
-const newsList = [];
-
-export {
-    newsList
-}
