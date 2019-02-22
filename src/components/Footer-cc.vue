@@ -1,6 +1,6 @@
 <template>
-    <van-tabbar v-model="active">
-        <van-tabbar-item v-for="taber in tabers" :icon="taber.icon" :info="taber.info">{{taber.name}}</van-tabbar-item>
+    <van-tabbar v-model="active" @change="change(active)">
+        <van-tabbar-item v-for="taber in tabers" :icon="taber.icon" :info="taber.info">{{taber.title}}</van-tabbar-item>
     </van-tabbar>
 </template>
 
@@ -15,15 +15,45 @@
         },
 
         computed: {
+            active: {
+                set: function (newValue) {
+                    this.$store.state.footer.active = newValue;
+                },
+                get: function () {
+                    return this.$store.state.footer.active;
+                }
+            },
             ...mapGetters('footer', [
-                'tabers',
-                'active'
-            ])
+                'tabers'
+            ]),
+
+        },
+
+        created: function () {
+            this.current();
         },
 
         data() {
-            return {
+            return {}
+        },
 
+        methods: {
+            change: function (active) {
+                this.$router.push({
+                    name: this.tabers[active].name
+                });
+            },
+            current: function () {
+                const currentPathName = this.$router.currentRoute.name;
+                if (this.tabers[this.active].name != currentPathName) {
+                   for (let i=0;i<this.tabers.length;i++){
+                       if (this.tabers[i].name == currentPathName) {
+                           this.active = i;
+
+                           return true;
+                       }
+                   }
+                }
             }
         }
     };

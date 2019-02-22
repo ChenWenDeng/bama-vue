@@ -1,13 +1,25 @@
 import {config} from '../config.js';
 
 const state = {
+    init: false,
+    reload: false,
     carousel: [
         'https://img.yzcdn.cn/public_files/2017/09/05/3bd347e44233a868c99cf0fe560232be.jpg',
         'https://klzz.hualinginfo.com/upload/admin/20190131/bc8a078c96e648391058faa132b7e627.png',
         'https://klzz.hualinginfo.com/upload/admin/20190131/421de037010e30c9e81a628428896743.png'
     ],
-    circleRecommend: [],
-    newsRecommend: [],
+    circleRecommend: {
+        loading: false,
+        finished: false,
+        error: false,
+        data: []
+    },
+    newsRecommend: {
+        loading: false,
+        finished: false,
+        error: false,
+        data: []
+    },
     categoryList: [{
         "id": 7,
         "slide_id": 2,
@@ -60,84 +72,117 @@ const state = {
 
 };
 
+const setter = {
+    circleRecommend: function (newValue) {
+        state.circleRecommend.data = state.circleRecommend.data.concat(newValue);
+    },
+    circleRecommendLoading: function (newValue) {
+        state.circleRecommend.loading = newValue ? true : false;
+    },
+    newsRecommendLoading: function (newValue) {
+        state.newsRecommend.loading = newValue ? true : false;
+    },
+    newsRecommend: function (newValue) {
+        state.newsRecommend.data = state.newsRecommend.data.concat(newValue);
+    }
+};
+
 const getters = {
     carousel: function (state) {
         return state.carousel;
     },
     circleRecommend: function (state) {
-        return state.circleRecommend;
+        return state.circleRecommend.data;
+    },
+    circleRecommendLoading: function (state) {
+        return state.circleRecommend.loading;
+    },
+    circleRecommendFinished: function (state) {
+        return state.circleRecommend.finished;
+    },
+    circleRecommendError: function (state) {
+        return state.circleRecommend.error;
     },
     newsRecommend: function (state) {
-        return state.newsRecommend;
+        return state.newsRecommend.data;
+    },
+    newsRecommendLoading: function (state) {
+        return state.newsRecommend.loading;
+    },
+    newsRecommendFinished: function (state) {
+        return state.newsRecommend.finished;
+    },
+    newsRecommendError: function (state) {
+        return state.newsRecommend.error;
     },
     categoryList: function (state) {
         return state.categoryList;
-    }
+    },
 };
 
 const mutations = {
-    loadCircleRecommend: function (state) {
-        let url = config.HOST_URL + 'api/portal/articles/recommend?parent_id=1&limit=1';
+    init(){
+        if (!state.init) {
+            state.init = !state.init;
 
-        // let data = {
-        //     parent_id: 1,
-        //     limit: 1
-        // };
-        //
-        // let method = 'GET';
+            mutations.loadCircleRecommend(state);
+            mutations.loadNewsRecommend(state);
+        }
 
-        // let options = {
-        //     body: JSON.stringify(data), // must match 'Content-Type' header
-        //     cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-        //     credentials: 'same-origin', // include, same-origin, *omit
-        //     headers: {
-        //         'user-agent': 'Mozilla/4.0 MDN Example',
-        //         'content-type': 'application/json'
-        //     },
-        //     method: method, // *GET, POST, PUT, DELETE, etc.
-        //     mode: 'cors', // no-cors, cors, *same-origin
-        //     redirect: 'follow', // manual, *follow, error
-        //     referrer: 'no-referrer', // *client, no-referrer
-        // };
-
-        fetch(url).then(response => response.json()).then(json => {
-            state.circleRecommend = state.circleRecommend.concat(json.data);
-        });
     },
-    loadNewsRecommend: function (state) {
-        let page = 1;
-        let url = config.HOST_URL + 'api/portal/articles/recommend?parent_id=2&page=' + page;
-        // let data = {
-        //     parent_id: 1,
-        //     limit: 1
-        // };
-        //
-        // let method = 'GET';
+    loadCircleRecommend(state) {
+        if (!getters.circleRecommendFinished(state)) {
+            setter.circleRecommendLoading(true);
 
-        // let options = {
-        //     body: JSON.stringify(data), // must match 'Content-Type' header
-        //     cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-        //     credentials: 'same-origin', // include, same-origin, *omit
-        //     headers: {
-        //         'user-agent': 'Mozilla/4.0 MDN Example',
-        //         'content-type': 'application/json'
-        //     },
-        //     method: method, // *GET, POST, PUT, DELETE, etc.
-        //     mode: 'cors', // no-cors, cors, *same-origin
-        //     redirect: 'follow', // manual, *follow, error
-        //     referrer: 'no-referrer', // *client, no-referrer
-        // };
+            // let pageRow = 20;
+            // let count = state.circleRecommend.data.length;
+            let url = config.HOST_URL + 'api/portal/articles/recommend?parent_id=1&limit=1';
 
-        fetch(url).then(response => response.json()).then(json => {
-            state.newsRecommend = state.newsRecommend.concat(json.data);
-        });
+            fetch(url).then(response => response.json()).then(json => {
+                if (json.data.length > 0) {
+                    setter.circleRecommend(json.data);
+                    setter.circleRecommendLoading(false);
+                } else {
+                    getters.circleRecommendFinished(true);
+                }
+            });
+        }
+    },
+    loadNewsRecommend(state) {
+        if (!getters.newsRecommendFinished(state)) {
+            setter.newsRecommendLoading(true);
+
+            let pageRow = 20;
+            let count = state.newsRecommend.data.length;
+            let url = config.HOST_URL + 'api/portal/articles/recommend?parent_id=2&limit=' + count + ',' + pageRow;
+
+            fetch(url).then(response => response.json()).then(json => {
+                if (json.data.length > 0) {
+                    setter.newsRecommend(json.data);
+                    setter.newsRecommendLoading(false);
+                } else {
+                    state.newsRecommend.finished = true;
+                }
+            });
+        }
     },
 };
-const actions = {};
+const actions = {
+    init({ commit }) {
+        commit('init')
+    },
+    loadCircleRecommend({ commit }){
+        commit('loadCircleRecommend')
+    },
+    loadNewsRecommend({ commit }){
+        commit('loadNewsRecommend')
+    }
+};
 
 export default {
     namespaced: true,//用于在全局引用此文件里的方法时标识这一个的文件名
     state,
+    setter,
     getters,
     mutations,
     actions,

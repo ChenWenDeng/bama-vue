@@ -14,6 +14,13 @@ const routes = [
         meta: {
             title: '首页'
         }
+    },
+    {
+        name: 'news',
+        component: () => import('./view/news/news.vue'),
+        meta: {
+            title: '资讯'
+        }
     }
 ];
 

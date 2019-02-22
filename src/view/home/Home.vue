@@ -16,14 +16,26 @@
                 <h3 class="recommend-left-cc">每周话题</h3>
                 <p class="recommend-right-cc">更多话题</p>
             </div>
-            <news-list-cc :data="circleRecommend"></news-list-cc>
+            <van-list :finished="circleRecommendFinished"
+                      finished-text="没有更多了"
+                      :error.sync="circleRecommendError"
+                      error-text="请求失败，点击重新加载">
+                <news-item-cc v-for="(item, key) in circleRecommend" :key="key" :item="item"></news-item-cc>
+            </van-list>
         </div>
 
         <div class="recommend-cc">
             <div class="recommend-title-cc">
                 <h3 class="recommend-left-cc">推荐内容</h3>
             </div>
-            <news-list-cc :data="newsRecommend"></news-list-cc>
+            <van-list v-model="newsRecommendLoading"
+                      :finished="newsRecommendFinished"
+                      finished-text="没有更多了"
+                      :error.sync="newsRecommendError"
+                      error-text="请求失败，点击重新加载"
+                      @load="loadNewsRecommend">
+                <news-item-cc v-for="(item, key) in newsRecommend" :key="key" :item="item"></news-item-cc>
+            </van-list>
         </div>
 
         <footer-cc></footer-cc>
@@ -32,10 +44,8 @@
 
 <script>
     import Vue from 'vue';
-    import {mapGetters, mapMutations} from 'vuex'
-    import {Swipe, SwipeItem, Lazyload} from 'vant';
-    import category from '../../components/Category-cc.vue';
-    import NewsListCc from "../../components/News-list-cc";
+    import {mapGetters, mapActions} from 'vuex'
+    import {Swipe, SwipeItem, Lazyload, List} from 'vant';
 
     // options 为可选参数，无则不传
     Vue.use(Lazyload, '');
@@ -44,34 +54,47 @@
         components: {
             [Swipe.name]: Swipe,
             [SwipeItem.name]: SwipeItem,
-            'category-cc': category,
-            'news-list-cc': NewsListCc,
+            [List.name]: List,
         },
 
         computed: {
             ...mapGetters('index', [
                 'categoryList',
                 'circleRecommend',
+                'circleRecommendFinished',
+                'circleRecommendError',
                 'newsRecommend',
+                'newsRecommendFinished',
+                'newsRecommendError',
                 'carousel'
-            ])
+            ]),
+            newsRecommendLoading: {
+                set: function (newValue) {
+                    this.$store.state.index.newsRecommend.loading = newValue;
+                },
+                get: function () {
+                    return this.$store.state.index.newsRecommend.loading;
+                }
+            }
         },
 
-        created: function () {
-            this.loadCircleRecommend();
-            this.loadNewsRecommend();
+        created() {
+            this.init();
         },
 
         data() {
             return {
                 title: this.$store.state.config.APP_NAME,
+
+                circleRecommendData: {}
             };
         },
 
         methods: {
-            ...mapMutations('index', [
+            ...mapActions('index', [
                 'loadCircleRecommend',
                 'loadNewsRecommend',
+                'init'
             ]),
             onClickLeft() {
                 // if (this.left_icon != '') {
@@ -116,5 +139,9 @@
     .recommend-right-cc {
         margin: 0;
         float: right;
+    }
+
+    .van-list {
+        background: #f3f3f3;
     }
 </style>

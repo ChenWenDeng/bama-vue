@@ -1,11 +1,15 @@
 const state = {
     tabers: [
-        {name: '首页', icon: 'wap-home', path: '/home'},
-        {name: '更多资讯', icon: 'newspaper-o', path: '/news'},
-        {name: '答题', icon: 'orders-o', path: ''},
-        {name: '个人中心', icon: 'contact', path: '/user'}
+        {name: 'home',title: '首页', icon: 'wap-home', path: '/home'},
+        {name: 'news',title: '更多资讯', icon: 'newspaper-o', path: '/news'},
+        {name: 'home',title: '答题', icon: 'orders-o', path: ''},
+        {name: 'user',title: '个人中心', icon: 'contact', path: '/user'}
     ],
     active: 0
+};
+
+const setter = {
+
 };
 
 const getters = {
@@ -24,6 +28,7 @@ const actions = {};
 export default {
     namespaced: true,//用于在全局引用此文件里的方法时标识这一个的文件名
     state,
+    setter,
     getters,
     mutations,
     actions,

@@ -22,7 +22,7 @@
 
 <script>
     import {Tag} from 'vant';
-    import {handlePublishTimeDesc} from './time.js'
+    import {handlePublishTimeDesc} from '../api/time.js'
 
     export default {
         props: ['item'],
