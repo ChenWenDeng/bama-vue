@@ -42,14 +42,14 @@
     }
 </script>
 
-<style type="less">
+<style type="text/css">
     .van-row{
         background: white;
     }
 
     .category-item-cc{
         text-align: center;
-        margin: 6px 0;
+        padding: 6px 0;
     }
 
     .category-item-cc i{

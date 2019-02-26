@@ -1,28 +1,32 @@
 <template>
-    <div class="news-item-cc">
-        <img class="news-item-thumbnail-cc" v-lazy="img">
-        <h4 class="news-item-title-cc">{{ title }}</h4>
-        <p>{{ brief }}</p>
-        <div class="news-info-cc">
-            <div class="news-info-left-cc">
-                <span class="news-time-cc">{{ issued }}</span>
+    <div class="article-item-cc m-bottom-cc" @click="$emit('click')">
+        <img class="article-item-thumbnail-cc" v-lazy="img">
+        <h4 class="article-item-title-cc">{{ title }}</h4>
+        <p class="describe-cc">{{ brief }}</p>
+        <div class="article-info-cc">
+            <div class="article-info-left-cc">
+                <span class="article-time-cc">{{ publish }}</span>
             </div>
-            <div class="news-info-right-cc">
+            <div class="article-info-right-cc">
                 <span class="fa fa-eye"></span>{{hits}}
                 <span class="fa fa-thumbs-o-up"></span>{{like}}
                 <span class="fa fa-star-o"></span>{{favorites}}
                 <span class="fa fa fa-commenting-o"></span>{{comment_count}}
             </div>
         </div>
-        <div class="tag">
+        <div class="article-tag">
             <van-tag v-for="(value, key) in tag" :key="key" :color="tagColor(key)">{{ value }}</van-tag>
         </div>
     </div>
 </template>
 
 <script>
-    import {Tag} from 'vant';
+    import Vue from 'vue';
+    import {Tag, Lazyload} from 'vant';
     import {handlePublishTimeDesc} from '../api/time.js'
+
+    // options 为可选参数，无则不传
+    Vue.use(Lazyload, '');
 
     export default {
         props: ['item'],
@@ -30,29 +34,44 @@
             [Tag.name]: Tag,
         },
 
+        computed: {
+            img: function () {
+                return this.item.thumbnail;
+            },
+            title: function () {
+                return this.item.post_title;
+            },
+            brief: function () {
+                return this.item.post_excerpt;
+            },
+            favorites: function () {
+                return this.item.post_favorites;
+            },
+            like: function () {
+                return this.item.post_like;
+            },
+            hits: function () {
+                return this.item.post_hits;
+            },
+            comment_count: function () {
+                return this.item.comment_count
+            },
+            tag: function () {
+                return this.item.tag;
+            },
+            publish: function () {
+                return handlePublishTimeDesc(this.item.published_time);
+            }
+        },
+
         data() {
             return {
-                img: this.item.thumbnail,
-                title: this.item.post_title,
-                brief: this.item.post_excerpt,
-                favorites: this.item.post_favorites,
-                like: this.item.post_like,
-                hits: this.item.post_hits,
-                comment_count: this.item.comment_count,
-                tag: this.item.tag,
-
                 color: {
                     default: '#f2826a',
                     category: '#5bc0de',
                     top:'#AEDD81',
                     recommend: '#f34612'
                 }
-            }
-        },
-
-        computed: {
-            issued: function () {
-                return handlePublishTimeDesc(this.item.published_time);
             }
         },
 
@@ -74,34 +93,36 @@
             },
             tagColor: function (key) {
                 return this.color[key] ? this.color[key] : this.color.default;
+            },
+            click: function () {
+
             }
         }
     }
 </script>
 
 <style type="text/css">
-    .news-item-cc {
+    .article-item-cc {
         position: relative;
         background: white;
-        margin-bottom: 8px;
     }
 
-    .news-item-cc:last-child {
+    .article-item-cc:last-child {
         margin-bottom: 0;
     }
 
-    .news-item-thumbnail-cc {
+    .article-item-thumbnail-cc {
         width: 100%;
         height: 210px;
     }
 
-    .news-item-title-cc {
-        margin: 4px 8px;
+    .article-item-title-cc {
+        margin: 4px 12px;
         font-size: 1.1rem;
     }
 
-    p {
-        margin: 4px 8px;
+    .describe-cc {
+        margin: 4px 12px;
         font-size: 13px;
         color: grey;
 
@@ -111,32 +132,34 @@
         -webkit-line-clamp: 2;
     }
 
-    .news-info-cc {
+    .article-info-cc {
         overflow: hidden;
         color: grey;
-        padding: 4px 8px;
+        padding: 4px 12px;
         font-size: 13px;
+        height: 20px;
+        line-height: 20px;
     }
 
-    .news-info-cc span{
+    .article-info-cc span{
         margin-right: 2px;
     }
 
-    .news-info-left-cc {
+    .article-info-left-cc {
         float: left;
     }
 
-    .news-info-right-cc {
+    .article-info-right-cc {
         float: right;
     }
 
-    .news-info-right-cc span{
+    .article-info-right-cc span{
         margin-left: 4px;
     }
 
-    .tag{
+    .article-tag{
         position: absolute;
-        top: -2px;
+        top: 0;
         right: 0;
     }
 

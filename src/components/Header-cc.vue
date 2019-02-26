@@ -77,6 +77,6 @@
 
 </script>
 
-<style lang="less">
+<style type="text/css">
 
 </style>

@@ -34,7 +34,7 @@ const setter = {
 
 const getters = {
     category: function (state) {
-       return state.category;
+        return state.category;
     },
     news: function (state) {
         return state.news;
@@ -45,7 +45,7 @@ const getters = {
 };
 
 const mutations = {
-    init: function(){
+    init: function () {
         if (!state.init) {
             state.init = !state.init;
 
@@ -64,10 +64,9 @@ const mutations = {
         });
     },
     loadNews: function () {
-        setTimeout(() => {
-            if (!state.category[state.active].finished) {
-                state.category[state.active].loading = true;
-
+        if (!state.category[state.active].finished) {
+            state.category[state.active].loading = true;
+            setTimeout(() => {
                 let pageRow = 20;
                 let count = typeof state.news[state.active] == 'undefined' ? 0 : state.news[state.active].length;
                 let urlParam = '?category_id=' + state.category[state.active].id + '&limit=' + count + ',' + pageRow;
@@ -76,13 +75,14 @@ const mutations = {
                 fetch(url).then(response => response.json()).then(json => {
                     if (json.data.length > 0) {
                         setter.news(json.data);
-                        state.category[state.active].loading = false;
                     } else {
                         state.category[state.active].finished = true;
                     }
+                    state.category[state.active].loading = false;
                 });
-            }
-        }, 500);
+
+            }, 500);
+        }
     }
 };
 

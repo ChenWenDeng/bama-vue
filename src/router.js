@@ -17,11 +17,21 @@ const routes = [
     },
     {
         name: 'news',
-        component: () => import('./view/news/news.vue'),
+        component: () => import('./view/news/News.vue'),
+
         meta: {
             title: '资讯'
         }
-    }
+    },
+    {
+        name: 'content',
+        path: '/content/:id',
+        component: () => import('./view/content/ArticleDetails.vue'),
+        meta: {
+            title: '文章'
+        },
+        props: true
+    },
 ];
 
 routes.forEach(route => {

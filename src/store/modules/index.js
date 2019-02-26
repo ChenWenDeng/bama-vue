@@ -133,37 +133,40 @@ const mutations = {
     loadCircleRecommend(state) {
         if (!getters.circleRecommendFinished(state)) {
             setter.circleRecommendLoading(true);
+            setTimeout(() => {
+                // let pageRow = 20;
+                // let count = state.circleRecommend.data.length;
+                let url = config.HOST_URL + 'api/portal/articles/recommend?parent_id=1&limit=1';
 
-            // let pageRow = 20;
-            // let count = state.circleRecommend.data.length;
-            let url = config.HOST_URL + 'api/portal/articles/recommend?parent_id=1&limit=1';
-
-            fetch(url).then(response => response.json()).then(json => {
-                if (json.data.length > 0) {
-                    setter.circleRecommend(json.data);
+                fetch(url).then(response => response.json()).then(json => {
+                    if (json.data.length > 0) {
+                        setter.circleRecommend(json.data);
+                    } else {
+                        getters.circleRecommendFinished(true);
+                    }
                     setter.circleRecommendLoading(false);
-                } else {
-                    getters.circleRecommendFinished(true);
-                }
-            });
+                });
+            },500)
         }
     },
     loadNewsRecommend(state) {
-        if (!getters.newsRecommendFinished(state)) {
-            setter.newsRecommendLoading(true);
+        if (!state.newsRecommend.finished) {
+            state.newsRecommend.loading = true;
+            setTimeout(() => {
+                let pageRow = 20;
+                let count = state.newsRecommend.data.length;
+                let url = config.HOST_URL + 'api/portal/articles/recommend?parent_id=2&limit=' + count + ',' + pageRow;
 
-            let pageRow = 20;
-            let count = state.newsRecommend.data.length;
-            let url = config.HOST_URL + 'api/portal/articles/recommend?parent_id=2&limit=' + count + ',' + pageRow;
+                fetch(url).then(response => response.json()).then(json => {
+                    if (json.data.length > 0) {
+                        setter.newsRecommend(json.data);
+                    } else {
+                        state.newsRecommend.finished = true;
+                    }
 
-            fetch(url).then(response => response.json()).then(json => {
-                if (json.data.length > 0) {
-                    setter.newsRecommend(json.data);
-                    setter.newsRecommendLoading(false);
-                } else {
-                    state.newsRecommend.finished = true;
-                }
-            });
+                    state.newsRecommend.loading = false;
+                });
+            }, 500)
         }
     },
 };

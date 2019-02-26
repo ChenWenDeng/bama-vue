@@ -1,9 +1,9 @@
 <template>
-    <div>
+    <div class="container">
         <header-cc :title="title" left_icon="bell" right_icon="search" @onClickLeft="onClickLeft"
                    @onClickRight="onClickRight"></header-cc>
 
-        <van-swipe :autoplay="3000" style="margin-bottom: 4px;">
+        <van-swipe :autoplay="3000" style="margin-bottom: 2px;">
             <van-swipe-item v-for="(image, index) in carousel" :key="index">
                 <img v-lazy="image" style="width: 100%;height: 240px;"/>
             </van-swipe-item>
@@ -11,7 +11,7 @@
 
         <category-cc :data="categoryList"></category-cc>
 
-        <div class="recommend-cc">
+        <div class="recommend-cc m-top-cc">
             <div class="recommend-title-cc">
                 <h3 class="recommend-left-cc">每周话题</h3>
                 <p class="recommend-right-cc">更多话题</p>
@@ -20,11 +20,11 @@
                       finished-text="没有更多了"
                       :error.sync="circleRecommendError"
                       error-text="请求失败，点击重新加载">
-                <news-item-cc v-for="(item, key) in circleRecommend" :key="key" :item="item"></news-item-cc>
+                <article-item-cc v-for="(value, key) in circleRecommend" :key="key" :item="value" @click="read(value)"></article-item-cc>
             </van-list>
         </div>
 
-        <div class="recommend-cc">
+        <div class="recommend-cc m-top-cc">
             <div class="recommend-title-cc">
                 <h3 class="recommend-left-cc">推荐内容</h3>
             </div>
@@ -34,7 +34,7 @@
                       :error.sync="newsRecommendError"
                       error-text="请求失败，点击重新加载"
                       @load="loadNewsRecommend">
-                <news-item-cc v-for="(item, key) in newsRecommend" :key="key" :item="item"></news-item-cc>
+                <article-item-cc v-for="(value, key) in newsRecommend" :key="key" :item="value"  @click="read(value)"></article-item-cc>
             </van-list>
         </div>
 
@@ -46,12 +46,14 @@
     import Vue from 'vue';
     import {mapGetters, mapActions} from 'vuex'
     import {Swipe, SwipeItem, Lazyload, List} from 'vant';
+    import ArticleItemCc from "../../components/Article-item-cc";
 
     // options 为可选参数，无则不传
     Vue.use(Lazyload, '');
 
     export default {
         components: {
+            ArticleItemCc,
             [Swipe.name]: Swipe,
             [SwipeItem.name]: SwipeItem,
             [List.name]: List,
@@ -96,6 +98,16 @@
                 'loadNewsRecommend',
                 'init'
             ]),
+            read: function (article) {
+                console.log(article);
+                let id = article.id;
+                this.$router.push({
+                    name: 'content',
+                    params: {
+                        id
+                    }
+                })
+            },
             onClickLeft() {
                 // if (this.left_icon != '') {
                 //     return true;
@@ -118,14 +130,13 @@
 <style>
 
     .recommend-cc {
-        margin-top: 8px;
         background: white;
     }
 
     .recommend-title-cc {
         height: 40px;
         line-height: 40px;
-        padding: 4px 8px;
+        padding: 4px 12px;
         overflow: hidden;
         font-size: 0.8rem;
     }
