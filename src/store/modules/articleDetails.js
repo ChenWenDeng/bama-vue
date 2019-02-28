@@ -1,5 +1,3 @@
-import {config} from '../config.js';
-
 const state = {
     article: {},
     commentList: {
@@ -36,7 +34,7 @@ const mutations = {
         }
     },
     read(state, id) {
-        let url = config.HOST_URL + 'api/portal/articles/read?id=' + id + '&relation=user,categories';
+        let url = process.env.BASE_URL + 'api/portal/articles/read?id=' + id + '&relation=user,categories';
 
         fetch(url).then(response => response.json()).then(json => {
             if (json.data) {
@@ -58,7 +56,7 @@ const mutations = {
                 let pageRow = 20;
                 let count = state.commentList.data.length;
                 let urlParam = 'object_id=' + id + '&table_name=portal_post&relation=user&limit=' + count + ',' + pageRow;
-                let url = config.HOST_URL + 'api/user/comments?' + urlParam;
+                let url = process.env.BASE_URL + 'api/user/comments?' + urlParam;
 
                 fetch(url).then(response => response.json()).then(json => {
                     if (json.data != '' && json.data[0].length > 0) {

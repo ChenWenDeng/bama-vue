@@ -1,5 +1,3 @@
-import {config} from '../config.js';
-
 const state = {
     init: false,
     news: {
@@ -55,7 +53,7 @@ const mutations = {
 
     },
     loadCategory: function () {
-        let url = config.HOST_URL + 'api/portal/categories?where[parent_id]=2&order[]=+list_order';
+        let url = process.env.BASE_URL + 'api/portal/categories?where[parent_id]=2&order[]=+list_order';
 
         fetch(url).then(response => response.json()).then(json => {
             if (json.data.length > 0) {
@@ -70,7 +68,7 @@ const mutations = {
                 let pageRow = 20;
                 let count = typeof state.news[state.active] == 'undefined' ? 0 : state.news[state.active].length;
                 let urlParam = '?category_id=' + state.category[state.active].id + '&limit=' + count + ',' + pageRow;
-                let url = config.HOST_URL + 'api/portal/articles/category' + urlParam;
+                let url = process.env.BASE_URL + 'api/portal/articles/category' + urlParam;
 
                 fetch(url).then(response => response.json()).then(json => {
                     if (json.data.length > 0) {

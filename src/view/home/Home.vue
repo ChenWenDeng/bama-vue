@@ -38,6 +38,8 @@
             </van-list>
         </div>
 
+        <back-top-cc></back-top-cc>
+
         <footer-cc></footer-cc>
     </div>
 </template>
@@ -86,7 +88,7 @@
 
         data() {
             return {
-                title: this.$store.state.config.APP_NAME,
+                title: process.env.APP_NAME,
 
                 circleRecommendData: {}
             };

@@ -1,5 +1,3 @@
-import {config} from '../config.js';
-
 const state = {
     init: false,
     reload: false,
@@ -136,7 +134,7 @@ const mutations = {
             setTimeout(() => {
                 // let pageRow = 20;
                 // let count = state.circleRecommend.data.length;
-                let url = config.HOST_URL + 'api/portal/articles/recommend?parent_id=1&limit=1';
+                let url = process.env.BASE_URL + 'api/portal/articles/recommend?parent_id=1&limit=1';
 
                 fetch(url).then(response => response.json()).then(json => {
                     if (json.data.length > 0) {
@@ -155,7 +153,7 @@ const mutations = {
             setTimeout(() => {
                 let pageRow = 20;
                 let count = state.newsRecommend.data.length;
-                let url = config.HOST_URL + 'api/portal/articles/recommend?parent_id=2&limit=' + count + ',' + pageRow;
+                let url = process.env.BASE_URL + 'api/portal/articles/recommend?parent_id=2&limit=' + count + ',' + pageRow;
 
                 fetch(url).then(response => response.json()).then(json => {
                     if (json.data.length > 0) {
