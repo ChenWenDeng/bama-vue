@@ -13,13 +13,15 @@
             </van-tab>
         </van-tabs>
 
+        <back-top-cc></back-top-cc>
+
         <footer-cc></footer-cc>
     </div>
 </template>
 
 <script>
     import Vue from 'vue';
-    import {mapGetters, mapMutations} from 'vuex'
+    import {mapGetters, mapActions} from 'vuex'
     import {List, Tabs, Tab, Lazyload} from 'vant';
 
     // options 为可选参数，无则不传
@@ -53,14 +55,12 @@
 
         data() {
             return {
-                title: this.$store.state.config.APP_NAME,
-
                 circleRecommendData: {}
             };
         },
 
         methods: {
-            ...mapMutations('news', [
+            ...mapActions('news', [
                 'loadCategory',
                 'loadNews',
                 'init'
@@ -79,12 +79,9 @@
             }
         }
     };
-
-
 </script>
 
 <style>
-
     .van-list {
         background: #f3f3f3;
     }

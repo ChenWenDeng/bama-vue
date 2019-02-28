@@ -4,8 +4,8 @@
                    @onClickRight="onClickRight"></header-cc>
 
         <van-swipe :autoplay="3000" style="margin-bottom: 2px;">
-            <van-swipe-item v-for="(image, index) in carousel" :key="index">
-                <img v-lazy="image" style="width: 100%;height: 240px;"/>
+            <van-swipe-item v-for="(item, index) in carousel" :key="index">
+                <img v-lazy="item.image" style="width: 100%;height: 240px;"/>
             </van-swipe-item>
         </van-swipe>
 
@@ -98,6 +98,7 @@
             ...mapActions('index', [
                 'loadCircleRecommend',
                 'loadNewsRecommend',
+                'loadCarousel',
                 'init'
             ]),
             read: function (article) {
@@ -116,10 +117,18 @@
                 // }
             },
             onClickRight() {
-                return false;
+                this.$router.push({
+                    name: 'search'
+                });
+
+                return true;
             },
             categoryItemClick: function (props) {
                 console.log(props);
+
+                this.$router.push({
+                    name: props.content
+                });
 
                 return true;
             }

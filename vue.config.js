@@ -4,5 +4,5 @@ module.exports = {
             args[0]["process.env"] = JSON.stringify(process.env);
             return args;
         });
-    }
+    },
 };

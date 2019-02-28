@@ -1,6 +1,4 @@
-import config from '../store/config.js';
-
-const comment = function (url, data) {
+function doCommentReq(url, data) {
     let token = '';
     let opts = {
         method: 'POST',
@@ -23,8 +21,38 @@ const comment = function (url, data) {
             return false;
         }
     });
-};
+}
 
-export default {
-    comment
+function commentReq(id, start, callback) {
+    let BASE_URL = process.env.BASE_URL;
+    let API_URL = 'api/user/comments';
+
+    if (typeof start == 'undefined') start = 0;
+    let pageRow = 20;
+
+
+    let data = {
+        object_id: id,
+        table_name: 'portal_post',
+        relation: 'user',
+        limit: start + ',' + pageRow
+    };
+
+    let urlParamArr = [];
+    for (let key in data) {
+        urlParamArr.push(key + '=' + data[key]);
+    }
+    let urlParam = '?' + urlParamArr.join('&');
+
+
+    let url = BASE_URL + API_URL + urlParam;
+
+    fetch(url).then(response => response.json()).then(json => {
+        typeof callback == "function" && callback(json.data);
+    });
+}
+
+export {
+    commentReq,
+    doCommentReq
 }

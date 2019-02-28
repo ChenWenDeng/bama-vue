@@ -17,6 +17,10 @@
         display: none
     }
 
+    .box-cc{
+        padding: 12px;
+    }
+
     .container{
         background-color: #f3f3f3;
     }

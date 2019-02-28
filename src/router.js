@@ -6,11 +6,11 @@ Vue.use(Router);
 const routes = [
     {
         path: '*',
-        redirect: '/home'
+        redirect: '/index'
     },
     {
-        name: 'home',
-        component: () => import('./view/home/Home.vue'),
+        name: 'index',
+        component: () => import('./view/index/Index.vue'),
         meta: {
             title: '首页'
         }
@@ -29,6 +29,24 @@ const routes = [
         component: () => import('./view/content/ArticleDetails.vue'),
         meta: {
             title: '文章'
+        },
+        props: true
+    },
+    {
+        name: 'login',
+        path: '/login',
+        component: () => import('./view/login/Login.vue'),
+        meta: {
+            title: '登陆'
+        },
+        props: true
+    },
+    {
+        name: 'search',
+        path: '/search',
+        component: () => import('./view/search/Search.vue'),
+        meta: {
+            title: '搜索'
         },
         props: true
     },

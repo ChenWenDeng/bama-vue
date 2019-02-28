@@ -1,9 +1,9 @@
 const state = {
     tabers: [
-        {name: 'home',title: '首页', icon: 'wap-home', path: '/home'},
+        {name: 'index',title: '首页', icon: 'wap-home', path: '/index'},
         {name: 'news',title: '更多资讯', icon: 'newspaper-o', path: '/news'},
         {name: 'home',title: '答题', icon: 'orders-o', path: ''},
-        {name: 'user',title: '个人中心', icon: 'contact', path: '/user'}
+        {name: 'login',title: '个人中心', icon: 'contact', path: '/login'}
     ],
     active: 0
 };

@@ -8,7 +8,7 @@
                     <span class="author">{{author}}</span><br/><span class="publish">{{publish}}</span>
                 </div>
             </div>
-            <div class="content" v-html="content"></div>
+            <div class="content" v-html="content" style="overflow: hidden;"></div>
             <div class="video" v-if="video">
                 <video width="100%" height="auto" controls>
                     <source :src="video" type="video/mp4">
@@ -179,9 +179,13 @@
 
     .article-details-cc .content img{
         width: 100%;
+        margin: 0;
+        padding: 0;
     }
     .article-details-cc .content table{
         width: 100%;
+        margin: 0;
+        padding: 0;
     }
 
     .control-panel-cc{
@@ -241,7 +245,6 @@
 
     .commenting-right-cc{
         overflow: hidden;
-        max-width: 40px;
         text-align: center;
         color: grey;
     }

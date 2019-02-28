@@ -1,3 +1,6 @@
+import {categoryReq} from '../../api/category.js';
+import {articleListReq} from '../../api/article.js'
+
 const state = {
     init: false,
     news: {
@@ -53,38 +56,55 @@ const mutations = {
 
     },
     loadCategory: function () {
-        let url = process.env.BASE_URL + 'api/portal/categories?where[parent_id]=2&order[]=+list_order';
-
-        fetch(url).then(response => response.json()).then(json => {
-            if (json.data.length > 0) {
-                setter.category(json.data);
+        let data = {
+            'where[parent_id]': 2,
+            'order[]': '+list_order'
+        };
+        categoryReq(data, function (res) {
+            if (res.length > 0) {
+                setter.category(res);
             }
-        });
+        })
     },
     loadNews: function () {
         if (!state.category[state.active].finished) {
-            state.category[state.active].loading = true;
             setTimeout(() => {
                 let pageRow = 20;
                 let count = typeof state.news[state.active] == 'undefined' ? 0 : state.news[state.active].length;
-                let urlParam = '?category_id=' + state.category[state.active].id + '&limit=' + count + ',' + pageRow;
-                let url = process.env.BASE_URL + 'api/portal/articles/category' + urlParam;
 
-                fetch(url).then(response => response.json()).then(json => {
-                    if (json.data.length > 0) {
-                        setter.news(json.data);
+                let category_id = state.category[state.active].id;
+                let limit = count + ',' + pageRow;
+                let data = {
+                    category_id,
+                    limit
+                };
+
+                articleListReq(data, function (res) {
+                    if (res.length > 0) {
+                        setter.news(res);
                     } else {
                         state.category[state.active].finished = true;
                     }
                     state.category[state.active].loading = false;
                 });
 
+
             }, 500);
         }
     }
 };
 
-const actions = {};
+const actions = {
+    init({ commit }) {
+        commit('init')
+    },
+    loadCategory({ commit }) {
+        commit('loadCategory')
+    },
+    loadNews({ commit }) {
+        commit('loadNews')
+    },
+};
 
 export default {
     namespaced: true,//用于在全局引用此文件里的方法时标识这一个的文件名

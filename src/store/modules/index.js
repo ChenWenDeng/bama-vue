@@ -1,11 +1,9 @@
+import {recommendReq} from '../../api/article.js'
+
 const state = {
     init: false,
     reload: false,
-    carousel: [
-        'https://img.yzcdn.cn/public_files/2017/09/05/3bd347e44233a868c99cf0fe560232be.jpg',
-        'https://klzz.hualinginfo.com/upload/admin/20190131/bc8a078c96e648391058faa132b7e627.png',
-        'https://klzz.hualinginfo.com/upload/admin/20190131/421de037010e30c9e81a628428896743.png'
-    ],
+    carousel: [],
     circleRecommend: {
         loading: false,
         finished: false,
@@ -28,7 +26,7 @@ const state = {
         "url": "#",
         "target": "",
         "description": "更多资讯",
-        "content": "更多资讯",
+        "content": "news",
         "more": null
     }, {
         "id": 8,
@@ -123,25 +121,35 @@ const mutations = {
         if (!state.init) {
             state.init = !state.init;
 
+            mutations.loadCarousel(state);
             mutations.loadCircleRecommend(state);
-            mutations.loadNewsRecommend(state);
         }
 
     },
+    loadCarousel(state){
+        let url = process.env.BASE_URL + 'api/home/slides/1?status=1';
+
+        fetch(url).then(response => response.json()).then(json => {
+            if (json.data.length > 0) {
+                state.carousel = json.data[0].items;
+            }
+        });
+    },
     loadCircleRecommend(state) {
         if (!getters.circleRecommendFinished(state)) {
-            setter.circleRecommendLoading(true);
             setTimeout(() => {
-                // let pageRow = 20;
-                // let count = state.circleRecommend.data.length;
-                let url = process.env.BASE_URL + 'api/portal/articles/recommend?parent_id=1&limit=1';
+                let data = {
+                    parent_id: 1,
+                    limit: 1
+                };
 
-                fetch(url).then(response => response.json()).then(json => {
-                    if (json.data.length > 0) {
-                        setter.circleRecommend(json.data);
+                recommendReq(data, function (res) {
+                    if (res.length > 0) {
+                        setter.circleRecommend(res);
                     } else {
                         getters.circleRecommendFinished(true);
                     }
+
                     setter.circleRecommendLoading(false);
                 });
             },500)
@@ -149,15 +157,17 @@ const mutations = {
     },
     loadNewsRecommend(state) {
         if (!state.newsRecommend.finished) {
-            state.newsRecommend.loading = true;
             setTimeout(() => {
                 let pageRow = 20;
                 let count = state.newsRecommend.data.length;
-                let url = process.env.BASE_URL + 'api/portal/articles/recommend?parent_id=2&limit=' + count + ',' + pageRow;
 
-                fetch(url).then(response => response.json()).then(json => {
-                    if (json.data.length > 0) {
-                        setter.newsRecommend(json.data);
+                let data = {
+                    parent_id: 2,
+                    limit: count + ',' + pageRow
+                };
+                recommendReq(data, function (res) {
+                    if (res.length > 0) {
+                        setter.newsRecommend(res);
                     } else {
                         state.newsRecommend.finished = true;
                     }
