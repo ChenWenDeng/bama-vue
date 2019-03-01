@@ -24,9 +24,13 @@
             <div class="control-item-cc" @click="doCollect(id)">
                 <span class="fa fa-star"></span>收藏
             </div>
-            <div class="control-item-cc" @click="doShare">
+            <div class="control-item-cc">
                 <span class="fa fa-share-alt"></span>分享
             </div>
+        </div>
+
+        <div>
+
         </div>
 
         <div class="comment m-top-cc" style="margin-bottom: 30px;">
@@ -47,20 +51,21 @@
             <input placeholder="说说您的看法···" v-model="commentValue">
             <div class="commenting-right-cc">发表</div>
         </div>
+
     </div>
 </template>
 
 <script>
     import {mapGetters, mapMutations} from 'vuex'
-    import {handlePublishTimeDesc} from '../../api/time.js'
-    import {List} from 'vant';
-
+    import {handlePublishTimeDesc} from '../../utils/time.js'
+    import {List, Popup} from 'vant'
 
     export default {
         props: ['id'],
 
         components: {
             [List.name]: List,
+            [Popup.name]: Popup,
         },
 
         created() {
@@ -95,6 +100,12 @@
             like: function(){
                 return this.article.post_like;
             },
+            describe: function(){
+                return this.article.post_excerpt;
+            },
+            thumbnail: function(){
+                return this.article.thumbnail;
+            },
 
             commentLoading: function () {
                 return this.commentList.loading;
@@ -118,7 +129,7 @@
 
         data() {
             return {
-                commentValue: ''
+                commentValue: '',
             }
         },
 
@@ -134,9 +145,6 @@
             doCollect: function (id) {
                 return true;
             },
-            doShare: function () {
-                return true;
-            }
         }
 
     }

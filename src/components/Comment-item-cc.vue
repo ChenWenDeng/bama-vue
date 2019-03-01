@@ -19,7 +19,7 @@
 <script>
     import Vue from 'vue';
     import {Lazyload} from 'vant';
-    import {handlePublishTimeDesc, formatDateTime} from '../api/time.js'
+    import {handlePublishTimeDesc, formatDateTime} from '../utils/time.js'
 
     // options 为可选参数，无则不传
     Vue.use(Lazyload, '');

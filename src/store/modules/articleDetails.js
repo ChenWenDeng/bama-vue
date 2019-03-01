@@ -34,7 +34,7 @@ const mutations = {
             finished: false,
             error: false,
             data: []
-        }
+        };
     },
     read(state, id) {
         readReq(id, function (res) {

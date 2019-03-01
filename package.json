@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-
     "serve": "vue-cli-service serve --mode dev",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
@@ -12,6 +11,7 @@
     "lodash": "^4.17.11",
     "require-context": "^1.1.0",
     "vant": "^1.6.5",
+    "vshare": "^2.0.0",
     "vue": "^2.5.22",
     "vue-router": "^3.0.1",
     "vuex": "^3.1.0"
