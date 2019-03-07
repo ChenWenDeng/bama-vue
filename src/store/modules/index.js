@@ -22,7 +22,7 @@ const state = {
         "status": 1,
         "list_order": 10000,
         "title": "更多资讯",
-        "image": "https:\/\/klzz.hualinginfo.com\/upload\/admin\/20190219\/2d2c549970637afa7151dd10ae4764f4.png",
+        "image": "https://klzz.hualinginfo.com/upload/admin/20190219/2d2c549970637afa7151dd10ae4764f4.png",
         "url": "#",
         "target": "",
         "description": "更多资讯",
@@ -34,7 +34,7 @@ const state = {
         "status": 1,
         "list_order": 10000,
         "title": "答题抢红包",
-        "image": "https:\/\/klzz.hualinginfo.com\/upload\/admin\/20190219\/78861dc6260f5896f7d2987f0c9ce5d6.png",
+        "image": "https://klzz.hualinginfo.com/upload/admin/20190219/78861dc6260f5896f7d2987f0c9ce5d6.png",
         "url": "#",
         "target": "",
         "description": "答题抢红包",
@@ -46,7 +46,7 @@ const state = {
         "status": 1,
         "list_order": 10000,
         "title": "话题回顾",
-        "image": "https:\/\/klzz.hualinginfo.com\/upload\/admin\/20190219\/f4d52f907673b9be7979405f20c84ed7.png",
+        "image": "https://klzz.hualinginfo.com/upload/admin/20190219/f4d52f907673b9be7979405f20c84ed7.png",
         "url": "#",
         "target": "",
         "description": "话题回顾",
@@ -58,7 +58,7 @@ const state = {
         "status": 1,
         "list_order": 10000,
         "title": "我的钱包",
-        "image": "https:\/\/klzz.hualinginfo.com\/upload\/admin\/20190219\/28f0d1a40e359ba63499f6af483f9c54.png",
+        "image": "https://klzz.hualinginfo.com/upload/admin/20190219/28f0d1a40e359ba63499f6af483f9c54.png",
         "url": "#",
         "target": "",
         "description": "我的钱包",
@@ -127,7 +127,7 @@ const mutations = {
 
     },
     loadCarousel(state){
-        let url = process.env.BASE_URL + 'api/home/slides/1?status=1';
+        let url = process.env.HOST_URL + 'api/home/slides/1?status=1';
 
         fetch(url).then(response => response.json()).then(json => {
             if (json.data.length > 0) {

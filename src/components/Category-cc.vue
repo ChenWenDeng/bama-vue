@@ -35,7 +35,7 @@
                 }
 
                 if (!bool){
-                    console.log('请使用 categoryItemClick(props) 来回调！ 并且返回true');
+                    //console.log('请使用 categoryItemClick(props) 来回调！ 并且返回true');
                 }
             }
         }

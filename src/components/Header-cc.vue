@@ -11,7 +11,7 @@
 
 
 <script>
-    import {NavBar, Icon, Toast} from 'vant';
+    import {NavBar, Icon} from 'vant';
 
     export default {
         props: {
@@ -57,7 +57,7 @@
                 }
 
                 if (!bool && !this.left_icon) {
-                    console.log('自动返回上一页~！');
+                    //console.log('自动返回上一页~！');
                     this.$router.back(-1);
                 }
             },
@@ -69,7 +69,7 @@
                 }
 
                 if (!bool) {
-                    console.log('未作处理~！');
+                    //console.log('未作处理~！');
                 }
             }
         }

@@ -1,5 +1,5 @@
 function readReq(id, callback) {
-    let BASE_URL = process.env.BASE_URL;
+    let HOST_URL = process.env.HOST_URL;
     let API_URL = 'api/portal/articles/read';
 
 
@@ -15,7 +15,7 @@ function readReq(id, callback) {
     let urlParam = '?' + urlParamArr.join('&');
 
 
-    let url = BASE_URL + API_URL + urlParam;
+    let url = HOST_URL + API_URL + urlParam;
 
     fetch(url).then(response => response.json()).then(json => {
         typeof callback == "function" && callback(json.data);
@@ -23,7 +23,7 @@ function readReq(id, callback) {
 }
 
 function articleListReq(data, callback) {
-    let BASE_URL = process.env.BASE_URL;
+    let HOST_URL = process.env.HOST_URL;
     let API_URL = 'api/portal/articles/category';
 
     if (data) {
@@ -34,7 +34,7 @@ function articleListReq(data, callback) {
         let urlParam = '?' + urlParamArr.join('&');
 
 
-        let url = BASE_URL + API_URL + urlParam;
+        let url = HOST_URL + API_URL + urlParam;
 
         fetch(url).then(response => response.json()).then(json => {
             typeof callback == "function" && callback(json.data);
@@ -45,7 +45,7 @@ function articleListReq(data, callback) {
 }
 
 function searchReq(keyword, callback) {
-    let BASE_URL = process.env.BASE_URL;
+    let HOST_URL = process.env.HOST_URL;
     let API_URL = 'api/portal/search';
 
     if (!keyword) return false;
@@ -62,7 +62,7 @@ function searchReq(keyword, callback) {
     let urlParam = '?' + urlParamArr.join('&');
 
 
-    let url = BASE_URL + API_URL + urlParam;
+    let url = HOST_URL + API_URL + urlParam;
 
     fetch(url).then(response => response.json()).then(json => {
         typeof callback == "function" && callback(json.data);
@@ -71,7 +71,7 @@ function searchReq(keyword, callback) {
 }
 
 function recommendReq(data, callback){
-    let BASE_URL = process.env.BASE_URL;
+    let HOST_URL = process.env.HOST_URL;
     let API_URL = 'api/portal/articles/recommend';
 
     if (data) {
@@ -82,7 +82,7 @@ function recommendReq(data, callback){
         let urlParam = '?' + urlParamArr.join('&');
 
 
-        let url = BASE_URL + API_URL + urlParam;
+        let url = HOST_URL + API_URL + urlParam;
 
         fetch(url).then(response => response.json()).then(json => {
             typeof callback == "function" && callback(json.data);

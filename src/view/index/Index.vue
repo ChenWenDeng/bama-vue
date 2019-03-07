@@ -102,7 +102,7 @@
                 'init'
             ]),
             read: function (article) {
-                console.log(article);
+                //console.log(article);
                 let id = article.id;
                 this.$router.push({
                     name: 'content',
@@ -124,7 +124,7 @@
                 return true;
             },
             categoryItemClick: function (props) {
-                console.log(props);
+                //console.log(props);
 
                 this.$router.push({
                     name: props.content

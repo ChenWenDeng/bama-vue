@@ -122,7 +122,7 @@
         },
 
         watch: {
-            title: function (newVal, oldVal) {
+            title: function (newVal) {
                 document.title = newVal;
             }
         },
@@ -139,10 +139,10 @@
                 'loadComment',
                 'init'
             ]),
-            doLike: function (id) {
+            doLike: function () {
                 return true;
             },
-            doCollect: function (id) {
+            doCollect: function () {
                 return true;
             },
         }

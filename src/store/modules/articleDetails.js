@@ -45,7 +45,7 @@ const mutations = {
     },
     loadComment(state, id) {
         if (!state.commentList.finished) {
-            console.log('加载评论', id, state.commentList);
+            // //console.log('加载评论', id, state.commentList);
 
             state.commentList.loading = true;
 

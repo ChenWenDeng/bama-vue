@@ -24,7 +24,7 @@ function doCommentReq(url, data) {
 }
 
 function commentReq(id, start, callback) {
-    let BASE_URL = process.env.BASE_URL;
+    let HOST_URL = process.env.HOST_URL;
     let API_URL = 'api/user/comments';
 
     if (typeof start == 'undefined') start = 0;
@@ -45,7 +45,7 @@ function commentReq(id, start, callback) {
     let urlParam = '?' + urlParamArr.join('&');
 
 
-    let url = BASE_URL + API_URL + urlParam;
+    let url = HOST_URL + API_URL + urlParam;
 
     fetch(url).then(response => response.json()).then(json => {
         typeof callback == "function" && callback(json.data);
