@@ -129,6 +129,8 @@ const mutations = {
     loadCarousel(state){
         let url = process.env.HOST_URL + 'api/home/slides/1?status=1';
 
+        console.log(process.env.HOST_URL);
+
         fetch(url).then(response => response.json()).then(json => {
             if (json.data.length > 0) {
                 state.carousel = json.data[0].items;
