@@ -2,10 +2,11 @@ import Vue from "vue"
 import Vuex from 'vuex'
 
 import news from "./modules/news"
-import index from './modules/index.js'
-import footer from './modules/footer.js'
-import search from './modules/search.js'
-import articleDetails from './modules/articleDetails.js'
+import index from './modules/index'
+import footer from './modules/footer'
+import search from './modules/search'
+import user from './modules/user'
+import articleDetails from './modules/articleDetails'
 
 Vue.use(Vuex);
 
@@ -18,6 +19,7 @@ const store = new Vuex.Store({
         footer,
         index,
         search,
+        user,
         articleDetails
     }
 });

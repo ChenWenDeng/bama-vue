@@ -1,52 +1,28 @@
-function readReq(id, callback) {
-    let HOST_URL = process.env.HOST_URL;
-    let API_URL = 'api/portal/articles/read';
+import { req_get } from '../utils/request';
 
+function readReq(id, callback) {
+    let api_url = 'api/portal/articles/read';
 
     let data = {
         id: id,
         relation: 'user,categories'
     };
 
-    let urlParamArr = [];
-    for (let key in data) {
-        urlParamArr.push(key + '=' + data[key]);
-    }
-    let urlParam = '?' + urlParamArr.join('&');
-
-
-    let url = HOST_URL + API_URL + urlParam;
-
-    fetch(url).then(response => response.json()).then(json => {
-        typeof callback == "function" && callback(json.data);
-    });
+    req_get(api_url, data, callback);
 }
 
 function articleListReq(data, callback) {
-    let HOST_URL = process.env.HOST_URL;
-    let API_URL = 'api/portal/articles/category';
+    let api_url = 'api/portal/articles/category';
 
     if (data) {
-        let urlParamArr = [];
-        for (let key in data) {
-            urlParamArr.push(key + '=' + data[key]);
-        }
-        let urlParam = '?' + urlParamArr.join('&');
-
-
-        let url = HOST_URL + API_URL + urlParam;
-
-        fetch(url).then(response => response.json()).then(json => {
-            typeof callback == "function" && callback(json.data);
-        });
+        req_get(api_url, data, callback);
     } else {
         return false;
     }
 }
 
 function searchReq(keyword, callback) {
-    let HOST_URL = process.env.HOST_URL;
-    let API_URL = 'api/portal/search';
+    let api_url = 'api/portal/search';
 
     if (!keyword) return false;
 
@@ -55,38 +31,14 @@ function searchReq(keyword, callback) {
         post_status: 1
     };
 
-    let urlParamArr = [];
-    for (let key in data) {
-        urlParamArr.push(key + '=' + data[key]);
-    }
-    let urlParam = '?' + urlParamArr.join('&');
-
-
-    let url = HOST_URL + API_URL + urlParam;
-
-    fetch(url).then(response => response.json()).then(json => {
-        typeof callback == "function" && callback(json.data);
-    });
-
+    req_get(api_url, data, callback);
 }
 
 function recommendReq(data, callback){
-    let HOST_URL = process.env.HOST_URL;
-    let API_URL = 'api/portal/articles/recommend';
+    let api_url = 'api/portal/articles/recommend';
 
     if (data) {
-        let urlParamArr = [];
-        for (let key in data) {
-            urlParamArr.push(key + '=' + data[key]);
-        }
-        let urlParam = '?' + urlParamArr.join('&');
-
-
-        let url = HOST_URL + API_URL + urlParam;
-
-        fetch(url).then(response => response.json()).then(json => {
-            typeof callback == "function" && callback(json.data);
-        });
+        req_get(api_url, data, callback);
     } else {
         return false;
     }

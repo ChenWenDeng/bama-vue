@@ -11,6 +11,7 @@
 
 <script>
     import Vue from 'vue';
+    import {mapMutations} from 'vuex'
     import {Button, Notify} from 'vant';
     import {Cookies} from 'js-cookie';
 
@@ -41,12 +42,17 @@
         },
 
         methods: {
+            ...mapMutations('user', [
+                'login',
+            ]),
             doLogin() {
                 if (!this.openid) {
                     Notify('请在微信浏览器中进行登录授权~');
                     return true;
                 }
                 this.loading = true;
+
+
             },
             checkWXBrowser () {
                 //window.navigator.userAgent属性包含了浏览器类型、版本、操作系统类型、浏览器引擎类型等信息，这个属性可以用来判断浏览器类型

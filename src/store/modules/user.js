@@ -1,3 +1,5 @@
+import {loginReq} from "../../api/user";
+
 const state = {
     token: null,
     info: {}
@@ -13,7 +15,20 @@ const getters = {
     }
 };
 
-const mutations = {};
+const mutations = {
+    login: function (state) {
+        loginReq('', function (res) {
+            document.write(res);
+            // if (res.length > 0){
+            //     for (let key in res){
+            //         res[key].thumbnail = res[key].more.thumbnail
+            //     }
+            // }
+            //
+            // state.searchResult = res;
+        })
+    }
+};
 
 const actions = {};
 
