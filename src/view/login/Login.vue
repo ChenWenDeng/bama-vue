@@ -39,6 +39,7 @@
         created() {
             this.checkWXBrowser();
             this.openid = Cookies.get('openid');
+            document.write(this.openid);
         },
 
         methods: {
