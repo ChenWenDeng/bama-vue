@@ -107,7 +107,7 @@
     .article-item-cc {
         position: relative;
         background: white;
-        padding-top: 12px;
+        padding-top: 14px;
     }
 
     .article-item-cc:last-child {
@@ -156,23 +156,17 @@
     .article-info-cc {
         overflow: hidden;
         color: grey;
-        padding: 4px 12px;
+        padding: 10px 12px;
         font-size: 0.8rem;
         height: 20px;
         line-height: 20px;
+    }
+
+    .article-info-cc span, .article-item-main-right-cc span{
         margin-right: 4px;
     }
 
-    .article-info-cc span{
-        margin-right: 4px;
-    }
-
-
-    .article-info-right-cc span, .article-item-main-right-cc span{
-        margin-right: 4px;
-    }
-
-    .article-info-right-cc span:last-child, .article-item-main-right-cc span:last-child{
+    .article-info-cc span:last-child, .article-item-main-right-cc span:last-child{
         margin-right: 0;
     }
 </style>
