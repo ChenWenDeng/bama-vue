@@ -158,7 +158,7 @@
         color: grey;
         padding: 10px 12px;
         padding-bottom: 8px;
-        font-size: 0.8rem;
+        font-size: 0.7rem;
         height: 20px;
         line-height: 20px;
     }
