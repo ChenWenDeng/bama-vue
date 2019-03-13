@@ -3,23 +3,21 @@
         <div class="article-item-main-cc">
             <img class="article-item-thumbnail-cc" v-lazy="img">
             <div class="article-item-main-right-cc">
-                <h4 class="article-item-title-cc">{{ title }}</h4>
+                <h4 class="article-item-title-cc">
+                    <template  v-for="(value, key) in tag">
+                        <van-tag v-if="key == 'top' || key == 'recommended'" plain :key="key" :color="tagColor(key)">{{ value }}</van-tag>
+                    </template>
+                    {{ title }}
+                </h4>
                 <p class="describe-cc">{{ brief }}</p>
             </div>
         </div>
         <div class="article-info-cc">
-            <div class="article-info-left-cc">
-                <span class="article-time-cc">{{ publish }}</span>
-            </div>
-            <div class="article-info-right-cc">
-                <span class="fa fa-eye"></span>{{hits}}
-                <span class="fa fa-thumbs-o-up"></span>{{like}}
-                <span class="fa fa-star-o"></span>{{favorites}}
-                <span class="fa fa fa-commenting-o"></span>{{comment_count}}
-            </div>
-        </div>
-        <div class="article-tag">
-            <van-tag v-for="(value, key) in tag" :key="key" :color="tagColor(key)">{{ value }}</van-tag>
+            <template v-for="(value, key) in tag">
+                <van-tag v-if="key != 'top' && key != 'recommended'" :key="key" plain :color="tagColor(key)">{{ value }}</van-tag>
+            </template>
+            <span>{{comment_count}}人评论</span>
+            <span class="article-time-cc">{{ publish }}</span>
         </div>
     </div>
 </template>
@@ -116,6 +114,7 @@
     }
 
     .article-item-main-cc{
+        margin-top:12px;
         height: 80px;
         overflow: hidden;
     }
@@ -158,34 +157,18 @@
         overflow: hidden;
         color: grey;
         padding: 4px 12px;
-        font-size: 13px;
+        font-size: 0.8rem;
         height: 20px;
         line-height: 20px;
+        margin-right: 4px;
     }
 
     .article-info-cc span{
-        margin-right: 2px;
+        margin-right: 4px;
     }
 
-    .article-info-left-cc {
-        float: left;
-    }
-
-    .article-info-right-cc {
-        float: right;
-    }
 
     .article-info-right-cc span{
         margin-left: 4px;
-    }
-
-    .article-tag{
-        position: absolute;
-        top: 0;
-        right: 0;
-    }
-
-    .van-tag{
-        margin-right: 6px;
     }
 </style>
