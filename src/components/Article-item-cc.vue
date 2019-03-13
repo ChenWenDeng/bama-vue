@@ -1,8 +1,12 @@
 <template>
     <div class="article-item-cc m-bottom-cc" @click="$emit('click')">
-        <img class="article-item-thumbnail-cc" v-lazy="img">
-        <h4 class="article-item-title-cc">{{ title }}</h4>
-        <p class="describe-cc">{{ brief }}</p>
+        <div class="article-item-main-cc">
+            <img class="article-item-thumbnail-cc" v-lazy="img">
+            <div class="article-item-main-right-cc">
+                <h4 class="article-item-title-cc">{{ title }}</h4>
+                <p class="describe-cc">{{ brief }}</p>
+            </div>
+        </div>
         <div class="article-info-cc">
             <div class="article-info-left-cc">
                 <span class="article-time-cc">{{ publish }}</span>
@@ -111,25 +115,43 @@
         margin-bottom: 0;
     }
 
+    .article-item-main-cc{
+        height: 80px;
+        overflow: hidden;
+    }
+
     .article-item-thumbnail-cc {
-        width: 100%;
-        height: 210px;
+        width: 120px;
+        height: 80px;
+        margin-left: 12px;
+        margin-right: 8px;
+        float: left;
+    }
+
+    .article-item-main-right-cc{
+        margin:0;
+        overflow: hidden;
     }
 
     .article-item-title-cc {
-        margin: 4px 12px;
-        font-size: 1.1rem;
-    }
-
-    .describe-cc {
-        margin: 4px 12px;
-        font-size: 13px;
-        color: grey;
-
+        font-size: 1rem;
+        margin: 0;
+        padding: 0;
+        margin-bottom: 4px;
         overflow: hidden;
         display: -webkit-box;
         -webkit-box-orient: vertical;
-        -webkit-line-clamp: 2;
+        -webkit-line-clamp: 1;
+    }
+
+    .describe-cc {
+        font-size: 13px;
+        color: grey;
+        margin: 0;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
     }
 
     .article-info-cc {
