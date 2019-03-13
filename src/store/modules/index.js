@@ -57,12 +57,12 @@ const state = {
         "slide_id": 2,
         "status": 1,
         "list_order": 10000,
-        "title": "我的钱包",
+        "title": "健康卫士",
         "image": "https://klzz.hualinginfo.com/upload/admin/20190219/28f0d1a40e359ba63499f6af483f9c54.png",
         "url": "#",
         "target": "",
-        "description": "我的钱包",
-        "content": "我的钱包",
+        "description": "健康卫士",
+        "content": "健康卫士",
         "more": null
     }],
 

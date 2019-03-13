@@ -4,7 +4,7 @@
             <img class="article-item-thumbnail-cc" v-lazy="img">
             <div class="article-item-main-right-cc">
 
-                <div style="overflow: hidden;margin-bottom: 4px;">
+                <div style="margin-bottom: 4px;">
                     <div style="float: left;">
                         <template v-for="(value, key) in tag">
                             <van-tag v-if="key == 'top' || key == 'recommended'" plain :key="key" :color="tagColor(key)">{{value }}</van-tag>
