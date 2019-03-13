@@ -164,7 +164,7 @@
     }
 
     .article-item-main-right-cc span{
-        margin-top: -2px;
+        font-size: 0.7rem;
     }
 
     .article-info-cc span, .article-item-main-right-cc span{
