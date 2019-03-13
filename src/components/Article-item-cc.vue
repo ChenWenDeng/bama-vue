@@ -3,18 +3,26 @@
         <div class="article-item-main-cc">
             <img class="article-item-thumbnail-cc" v-lazy="img">
             <div class="article-item-main-right-cc">
-                <h4 class="article-item-title-cc">
-                    <template  v-for="(value, key) in tag">
-                        <van-tag v-if="key == 'top' || key == 'recommended'" plain :key="key" :color="tagColor(key)">{{ value }}</van-tag>
-                    </template>
-                    {{ title }}
-                </h4>
+
+                <div style="overflow: hidden;margin-bottom: 4px;">
+                    <div style="float: left;">
+                        <template v-for="(value, key) in tag">
+                            <van-tag v-if="key == 'top' || key == 'recommended'" plain :key="key" :color="tagColor(key)">{{value }}</van-tag>
+                        </template>
+                    </div>
+                    <div style="overflow: hidden;">
+                        <h4 class="article-item-title-cc">{{ title }}</h4>
+                    </div>
+                </div>
+
                 <p class="describe-cc">{{ brief }}</p>
             </div>
         </div>
         <div class="article-info-cc">
             <template v-for="(value, key) in tag">
-                <van-tag v-if="key != 'top' && key != 'recommended'" :key="key" plain :color="tagColor(key)">{{ value }}</van-tag>
+                <van-tag v-if="key != 'top' && key != 'recommended'" :key="key" plain :color="tagColor(key)">{{ value
+                    }}
+                </van-tag>
             </template>
             <span>{{comment_count}}人评论</span>
             <span class="article-time-cc">{{ publish }}</span>
@@ -71,7 +79,7 @@
                 color: {
                     default: '#f2826a',
                     category: '#5bc0de',
-                    top:'#AEDD81',
+                    top: '#AEDD81',
                     recommend: '#f34612'
                 }
             }
@@ -114,7 +122,7 @@
         margin-bottom: 0;
     }
 
-    .article-item-main-cc{
+    .article-item-main-cc {
         height: 80px;
         overflow: hidden;
     }
@@ -127,16 +135,15 @@
         float: left;
     }
 
-    .article-item-main-right-cc{
-        margin:0;
+    .article-item-main-right-cc {
+        margin: 0;
         overflow: hidden;
     }
 
     .article-item-title-cc {
-        font-size: 1rem;
+        font-size: 0.9rem;
         margin: 0;
         padding: 0;
-        margin-bottom: 4px;
         overflow: hidden;
         display: -webkit-box;
         -webkit-box-orient: vertical;
@@ -163,15 +170,11 @@
         line-height: 20px;
     }
 
-    .article-item-main-right-cc span{
-        font-size: 0.7rem;
+    .article-item-main-right-cc span {
+        font-size: 0.6rem;
     }
 
-    .article-info-cc span, .article-item-main-right-cc span{
+    .article-info-cc span, .article-item-main-right-cc span {
         margin-right: 4px;
-    }
-
-    .article-info-cc span:last-child, .article-item-main-right-cc span:last-child{
-        margin-right: 0;
     }
 </style>
