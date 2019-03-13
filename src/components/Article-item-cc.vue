@@ -163,6 +163,10 @@
         line-height: 20px;
     }
 
+    .article-item-main-right-cc span{
+        margin-top: -2px;
+    }
+
     .article-info-cc span, .article-item-main-right-cc span{
         margin-right: 4px;
     }
