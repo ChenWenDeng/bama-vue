@@ -107,6 +107,7 @@
     .article-item-cc {
         position: relative;
         background: white;
+        padding-top: 12px;
     }
 
     .article-item-cc:last-child {
@@ -114,7 +115,6 @@
     }
 
     .article-item-main-cc{
-        margin-top:12px;
         height: 80px;
         overflow: hidden;
     }
@@ -168,7 +168,11 @@
     }
 
 
-    .article-info-right-cc span{
-        margin-left: 4px;
+    .article-info-right-cc span, .article-item-main-right-cc span{
+        margin-right: 4px;
+    }
+
+    .article-info-right-cc span:last-child, .article-item-main-right-cc span:last-child{
+        margin-right: 0;
     }
 </style>
