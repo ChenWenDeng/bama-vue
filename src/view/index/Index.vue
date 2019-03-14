@@ -63,8 +63,6 @@
             ...mapGetters('index', [
                 'categoryList',
                 'circleRecommend',
-                'circleRecommendFinished',
-                'circleRecommendError',
                 'newsRecommend',
                 'newsRecommendFinished',
                 'newsRecommendError',

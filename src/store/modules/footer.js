@@ -26,12 +26,12 @@ const mutations = {
         state.tabers = newTabers;
         return true;
     },
-    userCheck(state, userStatus) {
-        if (typeof userStatus == 'undefined') {
-            userStatus = this.$store.user.state.token ? true : false;
+    userCheck(state, auth) {
+        if (typeof auth == 'undefined') {
+            return false;
         }
 
-        if (userStatus) {
+        if (auth) {
             state.tabers[3] = state.userComponent;
         } else {
             state.tabers[3] = state.loginComponent;
@@ -41,7 +41,20 @@ const mutations = {
     }
 };
 
-const actions = {};
+const actions = {
+    userCheck: ({commit}, auth) => {
+        if (auth !== true && auth !== false) {
+
+            commit('user/checkAuth', function (auth) {
+                commit('userCheck', auth);
+            }, { root: true });
+
+        } else {
+
+            commit('userCheck', auth);
+        }
+    }
+};
 
 export default {
     namespaced: true,//用于在全局引用此文件里的方法时标识这一个的文件名

@@ -12,7 +12,7 @@
 
 <script>
     import Vue from 'vue';
-    import {mapGetters, mapMutations} from 'vuex'
+    import {mapGetters, mapMutations, mapActions} from 'vuex'
     import {Button, Notify} from 'vant';
     import Cookies from 'js-cookie';
 
@@ -25,9 +25,9 @@
             [Button.name]: Button,
         },
 
-        computed:{
+        computed: {
             ...mapGetters('user', [
-                'token'
+                'auth'
             ]),
         },
 
@@ -39,20 +39,32 @@
             }
         },
 
+        watch:{
+            auth: function (newValue) {
+                let that = this;
+                if (newValue === true){
+                    setTimeout(() => {
+                        that.jumpUserCenter();
+                    }, 1000);
+                }
+            }
+        },
+
         created() {
            this.init();
         },
 
         methods: {
-            ...mapMutations('user', [
-                'login',
+            ...mapActions('user', [
+                'login'
             ]),
             init(){
-                if (this.token){
-                    // this.jumpUserCenter();
+
+                if (this.auth){
+                    this.jumpUserCenter();
                 } else {
                     // this.checkWXBrowser();
-                    this.openid = Cookies.get('openid');
+                    // this.openid = Cookies.get('openid');
                 }
             },
             doLogin() {
@@ -60,24 +72,20 @@
                 //     Notify('请在微信浏览器中进行登录授权~');
                 //     return true;
                 // }
-                // this.loading = true;
+                this.loading = true;
 
                 let that = this;
 
                 this.login(function (res) {
                     that.loading = false;
 
-                    if (res.code == 1){
+                    if (res.code === 1){
 
                         Notify({
                             message: res.msg,
                             duration: 1000,
                             background: '#00bf19'
                         });
-
-                        setTimeout(function () {
-                            that.jumpUserCenter();
-                        }, 1000);
                     }else {
                         Notify(res.msg);
                     }
