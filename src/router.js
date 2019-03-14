@@ -42,6 +42,15 @@ const routes = [
         props: true
     },
     {
+        name: 'user',
+        path: '/user',
+        component: () => import('./view/user/User.vue'),
+        meta: {
+            title: '用户中心'
+        },
+        props: true
+    },
+    {
         name: 'search',
         path: '/search',
         component: () => import('./view/search/Search.vue'),

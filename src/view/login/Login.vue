@@ -1,6 +1,7 @@
 <template>
     <div class="container">
         <div class="box-cc login-btn">
+            <div></div>
             <van-button v-if="isWXBrowser" block round plain size="normal" type="primary" :loading="loading" loading-text="正在登陆"
                         @click="doLogin">微信一键登陆
             </van-button>
@@ -11,9 +12,9 @@
 
 <script>
     import Vue from 'vue';
-    import {mapMutations} from 'vuex'
+    import {mapGetters, mapMutations} from 'vuex'
     import {Button, Notify} from 'vant';
-    import {Cookies} from 'js-cookie';
+    import Cookies from 'js-cookie';
 
     Vue.use(Notify);
 
@@ -25,35 +26,62 @@
         },
 
         computed:{
-
+            ...mapGetters('user', [
+                'token'
+            ]),
         },
 
         data() {
             return {
                 loading: false,
                 openid: null,
-                isWXBrowser: false
+                isWXBrowser: true
             }
         },
 
         created() {
-            this.checkWXBrowser();
-            this.openid = Cookies.get('openid');
-            document.write(this.openid);
+           this.init();
         },
 
         methods: {
             ...mapMutations('user', [
                 'login',
             ]),
-            doLogin() {
-                if (!this.openid) {
-                    Notify('请在微信浏览器中进行登录授权~');
-                    return true;
+            init(){
+                if (this.token){
+                    // this.jumpUserCenter();
+                } else {
+                    // this.checkWXBrowser();
+                    this.openid = Cookies.get('openid');
                 }
-                this.loading = true;
+            },
+            doLogin() {
+                // if (!this.openid) {
+                //     Notify('请在微信浏览器中进行登录授权~');
+                //     return true;
+                // }
+                // this.loading = true;
 
+                let that = this;
 
+                this.login(function (res) {
+                    that.loading = false;
+
+                    if (res.code == 1){
+
+                        Notify({
+                            message: res.msg,
+                            duration: 1000,
+                            background: '#00bf19'
+                        });
+
+                        setTimeout(function () {
+                            that.jumpUserCenter();
+                        }, 1000);
+                    }else {
+                        Notify(res.msg);
+                    }
+                });
             },
             checkWXBrowser () {
                 //window.navigator.userAgent属性包含了浏览器类型、版本、操作系统类型、浏览器引擎类型等信息，这个属性可以用来判断浏览器类型
@@ -65,6 +93,11 @@
                     Notify('请在微信浏览器中打开本网站');
                     this.isWXBrowser = false;
                 }
+            },
+            jumpUserCenter: function () {
+                this.$router.push({
+                    name: 'user'
+                })
             }
         },
 

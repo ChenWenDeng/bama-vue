@@ -69,18 +69,6 @@ const state = {
 };
 
 const setter = {
-    circleRecommend: function (newValue) {
-        state.circleRecommend.data = state.circleRecommend.data.concat(newValue);
-    },
-    circleRecommendLoading: function (newValue) {
-        state.circleRecommend.loading = newValue ? true : false;
-    },
-    newsRecommendLoading: function (newValue) {
-        state.newsRecommend.loading = newValue ? true : false;
-    },
-    newsRecommend: function (newValue) {
-        state.newsRecommend.data = state.newsRecommend.data.concat(newValue);
-    }
 };
 
 const getters = {
@@ -89,12 +77,6 @@ const getters = {
     },
     circleRecommend: function (state) {
         return state.circleRecommend.data;
-    },
-    circleRecommendLoading: function (state) {
-        return state.circleRecommend.loading;
-    },
-    circleRecommendFinished: function (state) {
-        return state.circleRecommend.finished;
     },
     circleRecommendError: function (state) {
         return state.circleRecommend.error;
@@ -129,8 +111,6 @@ const mutations = {
     loadCarousel(state){
         let url = process.env.HOST_URL + 'api/home/slides/1?status=1';
 
-        console.log(process.env.HOST_URL);
-
         fetch(url).then(response => response.json()).then(json => {
             if (json.data.length > 0) {
                 state.carousel = json.data[0].items;
@@ -138,7 +118,7 @@ const mutations = {
         });
     },
     loadCircleRecommend(state) {
-        if (!getters.circleRecommendFinished(state)) {
+        if (!state.circleRecommend.finished) {
             setTimeout(() => {
                 let data = {
                     parent_id: 1,
@@ -147,12 +127,12 @@ const mutations = {
 
                 recommendReq(data, function (res) {
                     if (res.length > 0) {
-                        setter.circleRecommend(res);
+                        state.circleRecommend.data = state.circleRecommend.data.concat(res);
                     } else {
-                        getters.circleRecommendFinished(true);
+                        state.circleRecommend.finished = true;
                     }
 
-                    setter.circleRecommendLoading(false);
+                    state.circleRecommend.loading = false;
                 });
             },500)
         }
@@ -169,7 +149,7 @@ const mutations = {
                 };
                 recommendReq(data, function (res) {
                     if (res.length > 0) {
-                        setter.newsRecommend(res);
+                        state.newsRecommend.data = state.newsRecommend.data.concat(res);
                     } else {
                         state.newsRecommend.finished = true;
                     }
