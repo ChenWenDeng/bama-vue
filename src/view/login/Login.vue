@@ -56,7 +56,9 @@
                 this.login(function (res) {
                     that.loading = false;
 
-                    if (res.code === 1){
+                    console.log(res);
+
+                    if (res.code == 1){
 
                         setTimeout(() => {
                             that.jumpUserCenter();

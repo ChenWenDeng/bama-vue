@@ -59,7 +59,7 @@ const getters = {
 
 const mutations = {
     //登录
-    login: (state, callback) => {
+    wxLogin: (state, callback) => {
         if (state.token && state.userInfo) {
             let result = {code: 1, msg: '您已经登录，请勿重复登录！'};
 
@@ -138,8 +138,8 @@ const mutations = {
 };
 
 const actions = {
-    login: function ({commit}, callback) {
-        commit('login', (res) => {
+    wxLogin: function ({commit}, callback) {
+        commit('wxLogin', (res) => {
             callback(res);
         });
     },
