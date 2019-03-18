@@ -126,8 +126,9 @@ const mutations = {
                 };
 
                 recommendReq(data, function (res) {
-                    if (res.length > 0) {
-                        state.circleRecommend.data = state.circleRecommend.data.concat(res.data);
+                    let data = res.data;
+                    if (data.length > 0) {
+                        state.circleRecommend.data = state.circleRecommend.data.concat(data);
                     } else {
                         state.circleRecommend.finished = true;
                     }
@@ -148,8 +149,9 @@ const mutations = {
                     limit: count + ',' + pageRow
                 };
                 recommendReq(data, function (res) {
-                    if (res.length > 0) {
-                        state.newsRecommend.data = state.newsRecommend.data.concat(res.data);
+                    let data = res.data;
+                    if (data.length > 0) {
+                        state.newsRecommend.data = state.newsRecommend.data.concat(data);
                     } else {
                         state.newsRecommend.finished = true;
                     }
