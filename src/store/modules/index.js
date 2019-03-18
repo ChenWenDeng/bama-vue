@@ -127,7 +127,7 @@ const mutations = {
 
                 recommendReq(data, function (res) {
                     if (res.length > 0) {
-                        state.circleRecommend.data = state.circleRecommend.data.concat(res);
+                        state.circleRecommend.data = state.circleRecommend.data.concat(res.data);
                     } else {
                         state.circleRecommend.finished = true;
                     }
@@ -149,7 +149,7 @@ const mutations = {
                 };
                 recommendReq(data, function (res) {
                     if (res.length > 0) {
-                        state.newsRecommend.data = state.newsRecommend.data.concat(res);
+                        state.newsRecommend.data = state.newsRecommend.data.concat(res.data);
                     } else {
                         state.newsRecommend.finished = true;
                     }

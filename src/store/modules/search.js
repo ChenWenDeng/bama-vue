@@ -17,13 +17,14 @@ const getters = {
 const mutations = {
     search: function (state) {
         searchReq(state.keyword, function (res) {
-            if (res.length > 0){
-                for (let key in res){
-                    res[key].thumbnail = res[key].more.thumbnail
+            let data = res.data;
+            if (data.length > 0){
+                for (let key in data){
+                    data[key].thumbnail = data[key].more.thumbnail
                 }
             }
 
-            state.searchResult = res;
+            state.searchResult = data;
         })
     }
 };

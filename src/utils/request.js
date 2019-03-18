@@ -17,7 +17,7 @@ function req_get(url, data, callback) {
     }
 
     fetch(url).then(response => response.json()).then(json => {
-        typeof callback == "function" && callback(json.data);
+        typeof callback == "function" && callback(json);
     });
 }
 

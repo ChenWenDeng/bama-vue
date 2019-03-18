@@ -38,8 +38,9 @@ const mutations = {
     },
     read(state, id) {
         readReq(id, function (res) {
-            if (res) {
-                state.article = res;
+            let data = res.data;
+            if (data) {
+                state.article = data;
             }
         });
     },
@@ -53,8 +54,9 @@ const mutations = {
                 let start = state.commentList.data.length;
 
                 commentReq(id, start, function (res) {
-                    if (res != '' && res[0].length > 0) {
-                        state.commentList.data = state.commentList.data.concat(res[0]);
+                    let data = res.data;
+                    if (data != '' && data[0].length > 0) {
+                        state.commentList.data = state.commentList.data.concat(data[0]);
                     } else {
                         state.commentList.finished = true;
                     }

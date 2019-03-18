@@ -38,7 +38,7 @@
 
         methods: {
             ...mapActions('user', [
-                'login'
+                'wxLogin'
             ]),
             init(){
                 this.checkWXBrowser();
@@ -53,7 +53,7 @@
 
                 let that = this;
 
-                this.login(function (res) {
+                this.wxLogin(function (res) {
                     that.loading = false;
 
                     console.log(res);

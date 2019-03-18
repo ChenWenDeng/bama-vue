@@ -61,8 +61,9 @@ const mutations = {
             'order[]': '+list_order'
         };
         categoryReq(data, function (res) {
-            if (res.length > 0) {
-                setter.category(res);
+            let data = res.data;
+            if (data.length > 0) {
+                setter.category(data);
             }
         })
     },
@@ -80,8 +81,9 @@ const mutations = {
                 };
 
                 articleListReq(data, function (res) {
-                    if (res.length > 0) {
-                        setter.news(res);
+                    let data = res.data;
+                    if (data.length > 0) {
+                        setter.news(data);
                     } else {
                         state.category[state.active].finished = true;
                     }

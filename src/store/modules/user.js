@@ -1,4 +1,4 @@
-import {loginReq} from "../../api/user";
+import {wxLoginReq} from "../../api/user";
 import storge from '../../utils/storge'
 
 const state = {
@@ -43,7 +43,7 @@ const getters = {
     userInfo: (state) => {
         return mutations.userInfo(state);
     },
-    menu: (state) =>{
+    menu: (state) => {
         let userInfo = mutations.userInfo(state);
 
         if (userInfo && userInfo.mobile) {
@@ -64,29 +64,25 @@ const mutations = {
             let result = {code: 1, msg: '您已经登录，请勿重复登录！'};
 
             typeof callback === 'function' && callback(result);
+        } else if (mutations.loadCacheInfo(state)) {
+            let result = {code: 1, msg: '登录成功！'};
 
-            return true;
-        }else{
-            if (mutations.loadCacheInfo(state)) {
-                let result = {code: 1, msg: '登录成功！'};
+            typeof callback === 'function' && callback(result);
+        } else {
+            wxLoginReq('', (res) => {
+                console.log(res);
+
+                if (res.code == 1) {
+                    state.token = res.data.token;
+                    state.userInfo = res.data.user;
+
+                    mutations.cacheInfo(state, state.token, state.userInfo);
+                }
+
+                let result = {code: res.code, msg: res.msg};
 
                 typeof callback === 'function' && callback(result);
-
-                return true;
-            }else {
-                loginReq('', (res) => {
-                    if (res.code === 1) {
-                        state.token = res.data.token;
-                        state.userInfo = res.data.user;
-
-                        mutations.cacheInfo(state, state.token, state.userInfo);
-                    }
-
-                    let result = {code: res.code, msg: res.msg};
-
-                    typeof callback === 'function' && callback(result);
-                });
-            }
+            });
         }
     },
     //登录判断
@@ -102,13 +98,13 @@ const mutations = {
 
         return state.token;
     },
-    userInfo: (state) =>{
+    userInfo: (state) => {
         !state.userInfo && mutations.loadCacheInfo(state);
 
         return state.userInfo;
     },
-    cacheInfo: (state, token, userInfo) =>{
-        if (token && userInfo){
+    cacheInfo: (state, token, userInfo) => {
+        if (token && userInfo) {
             storge.set('token', token);
             storge.set('userInfo', userInfo);
 
@@ -131,7 +127,7 @@ const mutations = {
             state.userInfo = userInfo;
 
             return true;
-        }else {
+        } else {
             return false;
         }
     }
