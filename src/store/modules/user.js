@@ -53,7 +53,7 @@ const getters = {
         return state.menu;
     },
     auth: (state) => {
-        return !state.token || !state.userInfo;
+        return mutations.loadCacheInfo(state);
     }
 };
 
@@ -117,6 +117,7 @@ const mutations = {
             return false;
         }
     },
+    //读取用户数据是否存在
     loadCacheInfo: (state) => {
         if (state.userInfo && state.token) {
             return true;
@@ -137,12 +138,9 @@ const mutations = {
 };
 
 const actions = {
-    login: function ({commit, dispatch}, callback) {
+    login: function ({commit}, callback) {
         commit('login', (res) => {
             callback(res);
-
-            //登录后taber菜单修改
-            dispatch('footer/userCheck', '', {root: true});
         });
     },
     checkAuth: function ({commit}, callback) {

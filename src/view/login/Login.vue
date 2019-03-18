@@ -1,7 +1,6 @@
 <template>
     <div class="container">
-        <div class="box-cc login-btn">
-            <div></div>
+        <div class="login-btn">
             <van-button v-if="isWXBrowser" block round plain size="normal" type="primary" :loading="loading" loading-text="正在登陆"
                         @click="doLogin">微信一键登陆
             </van-button>
@@ -34,7 +33,7 @@
         },
 
         created() {
-           this.init();
+           // this.init();
         },
 
         methods: {
@@ -42,8 +41,8 @@
                 'login'
             ]),
             init(){
-                // this.checkWXBrowser();
-                // this.openid = Cookies.get('openid');
+                this.checkWXBrowser();
+                this.openid = Cookies.get('openid');
             },
             doLogin() {
                 // if (!this.openid) {

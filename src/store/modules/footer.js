@@ -15,7 +15,7 @@ const setter = {};
 
 const getters = {
     tabers: function (state) {
-        return mutations.getTabers();
+        return mutations.getTabers(state);
     },
     active: function (state) {
         return state.active;
@@ -23,24 +23,7 @@ const getters = {
 };
 
 const mutations = {
-    taberUpdate(state, newTabers) {
-        state.tabers = newTabers;
-        return true;
-    },
-    userCheck(state, auth) {
-        if (typeof auth == 'undefined') {
-            return false;
-        }
-
-        if (auth) {
-            state.tabers[3] = state.userComponent;
-        } else {
-            state.tabers[3] = state.loginComponent;
-        }
-
-        return true;
-    },
-    getTabers(){
+    getTabers(state){
         let auth = storge.get('token');
 
         auth ? state.tabers[3] = state.userComponent: state.tabers[3] = state.loginComponent;
@@ -50,18 +33,7 @@ const mutations = {
 };
 
 const actions = {
-    userCheck: ({commit}, auth) => {
-        if (auth !== true && auth !== false) {
 
-            commit('user/checkAuth', function (auth) {
-                commit('userCheck', auth);
-            }, { root: true });
-
-        } else {
-
-            commit('userCheck', auth);
-        }
-    }
 };
 
 export default {
