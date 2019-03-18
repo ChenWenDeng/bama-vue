@@ -9,23 +9,27 @@ const state = {
         {
             id: 0,
             title: '我的收藏',
-            icon: "like-o"
+            icon: "like-o",
+            path: 'collection'
         },
         {
             id: 1,
             title: '消息中心',
-            icon: "comment-o"
+            icon: "comment-o",
+            path: 'notice'
         },
         {
             id: 2,
             title: '意见反馈',
-            icon: "envelop-o"
+            icon: "envelop-o",
+            path: 'suggest'
         },
         {
             id: 3,
             title: '修改手机',
             icon: "phone-o",
-            value: ''
+            value: '',
+            path: 'mobile'
         }
     ]
 };
@@ -42,7 +46,7 @@ const getters = {
     menu: (state) =>{
         let userInfo = mutations.userInfo(state);
 
-        if (userInfo.mobile) {
+        if (userInfo && userInfo.mobile) {
             state.menu[3].value = userInfo.mobile;
         }
 

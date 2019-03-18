@@ -143,7 +143,7 @@
     .recommend-title-cc {
         height: 28px;
         line-height: 28px;
-        padding: 4px 12px;
+        padding: 8px 12px;
         overflow: hidden;
         font-size: 0.8rem;
         border-bottom: 1px solid #f5f5f5;

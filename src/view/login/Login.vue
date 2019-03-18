@@ -25,26 +25,11 @@
             [Button.name]: Button,
         },
 
-        computed: {
-
-        },
-
         data() {
             return {
                 loading: false,
                 openid: null,
                 isWXBrowser: true
-            }
-        },
-
-        watch:{
-            auth: function (newValue) {
-                let that = this;
-                if (newValue === true){
-                    setTimeout(() => {
-                        that.jumpUserCenter();
-                    }, 1000);
-                }
             }
         },
 
@@ -73,6 +58,10 @@
                     that.loading = false;
 
                     if (res.code === 1){
+
+                        setTimeout(() => {
+                            that.jumpUserCenter();
+                        }, 1000);
 
                         Notify({
                             message: res.msg,

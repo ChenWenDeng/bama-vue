@@ -5,7 +5,7 @@
             <div class="article-item-main-right-cc">
 
                 <div style="margin-bottom: 4px;">
-                    <div style="float: left;">
+                    <div style="float: left;margin-top: 2px;">
                         <template v-for="(value, key) in tag">
                             <van-tag v-if="key == 'top' || key == 'recommended'" plain :key="key" :color="tagColor(key)">{{value }}</van-tag>
                         </template>
@@ -115,7 +115,6 @@
     .article-item-cc {
         position: relative;
         background: white;
-        padding-top: 14px;
     }
 
     .article-item-cc:last-child {
@@ -123,15 +122,17 @@
     }
 
     .article-item-main-cc {
-        height: 80px;
+        height: 90px;
+        padding-top: 16px;;
         overflow: hidden;
     }
 
     .article-item-thumbnail-cc {
-        width: 120px;
-        height: 80px;
+        width: 130px;
+        height: 90px;
         margin-left: 12px;
         margin-right: 8px;
+        border-radius: 4px;
         float: left;
     }
 
@@ -141,7 +142,7 @@
     }
 
     .article-item-title-cc {
-        font-size: 0.9rem;
+        font-size: 1.1rem;
         margin: 0;
         padding: 0;
         overflow: hidden;
@@ -151,7 +152,7 @@
     }
 
     .describe-cc {
-        font-size: 13px;
+        font-size: 1rem;
         color: grey;
         margin: 0;
         overflow: hidden;
@@ -164,7 +165,6 @@
         overflow: hidden;
         color: grey;
         padding: 10px 12px;
-        padding-bottom: 8px;
         font-size: 0.7rem;
         height: 20px;
         line-height: 20px;

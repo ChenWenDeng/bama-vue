@@ -1,7 +1,16 @@
 <template>
     <div class="container user-box">
+        <div class="head-info" @click="toUserInfo">
+            <div class="head-img">
+                <img :src="userInfo.avatar" class="avatar"/>
+            </div>
+            <div class="head-user-info">
+                {{ userInfo.user_nickname }}<br/><span class="user-level">普通会员</span>
+            </div>
+        </div>
+
         <van-cell-group>
-            <van-cell v-for="item in menu" :icon="item.icon" :key="item.id" :title="item.title" is-link :value="item.value" />
+            <van-cell v-for="item in menu" :icon="item.icon" :key="item.id" :title="item.title" is-link :value="item.value" @click="jump(item.path)"/>
         </van-cell-group>
 
         <footer-cc></footer-cc>
@@ -35,7 +44,16 @@
         },
 
         methods: {
-
+            toUserInfo() {
+                this.$router.push({
+                    name: 'userInfo'
+                })
+            },
+            jump(name){
+                this.$router.push({
+                    name: name
+                })
+            }
         }
     }
 </script>
@@ -49,4 +67,35 @@
         padding-top: 15px;
         padding-bottom: 15px;
     }
+
+    .user-box .head-info{
+        overflow: hidden;
+        padding: 38px 30px;
+        background: #398bff;
+        position: relative;
+    }
+
+    .user-box .head-img{
+        float: left;
+        margin-right: 20px;
+    }
+
+    .user-box .head-user-info{
+        float: left;
+        color: white;
+        font-size: 1.3rem;
+        padding-top: 8px;
+    }
+
+    .user-box .avatar{
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+    }
+
+    .user-box .head-user-info .user-level{
+        font-size: 0.8rem;
+    }
+
+
 </style>
