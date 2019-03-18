@@ -1,9 +1,10 @@
+import storge from '../../utils/storge'
+
 const state = {
     tabers: [
         {name: 'index', title: '首页', icon: 'wap-home', path: '/index'},
         {name: 'news', title: '更多资讯', icon: 'newspaper-o', path: '/news'},
-        {name: 'home', title: '答题', icon: 'orders-o', path: ''},
-        {name: 'login', title: '个人中心', icon: 'contact', path: '/login'}
+        {name: 'home', title: '答题', icon: 'orders-o', path: ''}
     ],
     active: 0,
     loginComponent: {name: 'login', title: '个人中心', icon: 'contact', path: '/login'},
@@ -14,7 +15,7 @@ const setter = {};
 
 const getters = {
     tabers: function (state) {
-        return state.tabers;
+        return mutations.getTabers();
     },
     active: function (state) {
         return state.active;
@@ -38,6 +39,13 @@ const mutations = {
         }
 
         return true;
+    },
+    getTabers(){
+        let auth = storge.get('token');
+
+        auth ? state.tabers[3] = state.userComponent: state.tabers[3] = state.loginComponent;
+
+        return state.tabers;
     }
 };
 

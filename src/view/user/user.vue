@@ -6,8 +6,6 @@
 
         <footer-cc></footer-cc>
     </div>
-
-
 </template>
 
 <script>
@@ -33,19 +31,12 @@
         },
 
         created() {
-            this.checkAuth();
+
         },
 
         methods: {
-            checkAuth() {
-                if (!this.auth) {
-                    this.$router.push({
-                        name: 'login'
-                    })
-                }
-            }
-        }
 
+        }
     }
 </script>
 

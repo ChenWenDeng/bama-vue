@@ -15,4 +15,5 @@ const storage = {
         window.localStorage.clear();
     }
 };
+
 export default storage;

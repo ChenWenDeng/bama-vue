@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import storge from './utils/storge'
 
 Vue.use(Router);
 
@@ -67,7 +68,25 @@ routes.forEach(route => {
 
 const router = new Router({routes});
 
+let authRouter = ['login', 'user'];
+
+
 router.beforeEach((to, from, next) => {
+
+    if (authRouter.indexOf(to.name) > 0){
+        let auth = storge.get('token');
+
+        if (auth) {
+            if (to.name === 'login') {
+                document.title = '用户中心';
+                next({name: 'user'});
+            }
+        }else {
+            document.title = '登陆';
+            next({name: 'login'});
+        }
+    }
+
     const title = to.meta && to.meta.title;
     if (title) {
         document.title = title;

@@ -12,7 +12,7 @@
 
 <script>
     import Vue from 'vue';
-    import {mapGetters, mapMutations, mapActions} from 'vuex'
+    import {mapActions} from 'vuex'
     import {Button, Notify} from 'vant';
     import Cookies from 'js-cookie';
 
@@ -26,9 +26,7 @@
         },
 
         computed: {
-            ...mapGetters('user', [
-                'auth'
-            ]),
+
         },
 
         data() {
@@ -59,13 +57,8 @@
                 'login'
             ]),
             init(){
-
-                if (this.auth){
-                    this.jumpUserCenter();
-                } else {
-                    // this.checkWXBrowser();
-                    // this.openid = Cookies.get('openid');
-                }
+                // this.checkWXBrowser();
+                // this.openid = Cookies.get('openid');
             },
             doLogin() {
                 // if (!this.openid) {
