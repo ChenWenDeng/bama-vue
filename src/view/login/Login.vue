@@ -44,7 +44,18 @@
                 this.checkWXBrowser();
                 this.openid = Cookies.get('openid');
             },
-            doLogin() {
+            checkWXBrowser () {
+                //window.navigator.userAgent属性包含了浏览器类型、版本、操作系统类型、浏览器引擎类型等信息，这个属性可以用来判断浏览器类型
+                var ua = window.navigator.userAgent.toLowerCase();
+                //通过正则表达式匹配ua中是否含有MicroMessenger字符串
+                if (ua.match(/MicroMessenger/i) == 'micromessenger') {
+                    this.isWXBrowser = true;
+                } else {
+                    Notify('请在微信浏览器中打开本网站');
+                    this.isWXBrowser = false;
+                }
+            },
+            doLogin(){
                 if (!this.openid) {
                     Notify('请在微信浏览器中进行登录授权~');
                     return true;
@@ -55,8 +66,6 @@
 
                 this.wxLogin(function (res) {
                     that.loading = false;
-
-                    console.log(res);
 
                     if (res.code == 1){
 
@@ -73,17 +82,6 @@
                         Notify(res.msg);
                     }
                 });
-            },
-            checkWXBrowser () {
-                //window.navigator.userAgent属性包含了浏览器类型、版本、操作系统类型、浏览器引擎类型等信息，这个属性可以用来判断浏览器类型
-                var ua = window.navigator.userAgent.toLowerCase();
-                //通过正则表达式匹配ua中是否含有MicroMessenger字符串
-                if (ua.match(/MicroMessenger/i) == 'micromessenger') {
-                    this.isWXBrowser = true;
-                } else {
-                    Notify('请在微信浏览器中打开本网站');
-                    this.isWXBrowser = false;
-                }
             },
             jumpUserCenter: function () {
                 this.$router.push({

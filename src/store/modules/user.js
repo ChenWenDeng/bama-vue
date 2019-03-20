@@ -108,6 +108,12 @@ const mutations = {
             storge.set('token', token);
             storge.set('userInfo', userInfo);
 
+
+            let overtime = 60 * 60 * 24;//登录有效期
+            overtime += parseInt((new Date()).getTime() / 1000);
+
+            storge.set('cacheInfoOverTime', overtime);
+
             return true;
         } else {
             return false;
@@ -121,14 +127,23 @@ const mutations = {
 
         let token = storge.get('token');
         let userInfo = JSON.parse(storge.get('userInfo'));
+        let overtime = storge.get('cacheInfoOverTime');
 
-        if (token && userInfo) {
-            state.token = token;
-            state.userInfo = userInfo;
+        if (overtime < parseInt((new Date()).getTime() / 1000)) {
+            storge.delete('token');
+            storge.delete('userInfo');
+            storge.delete('cacheInfoOverTime');
 
-            return true;
-        } else {
             return false;
+        }else {
+            if (token && userInfo) {
+                state.token = token;
+                state.userInfo = userInfo;
+
+                return true;
+            } else {
+                return false;
+            }
         }
     }
 };

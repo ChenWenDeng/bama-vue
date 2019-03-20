@@ -55,7 +55,9 @@ const mutations = {
 
                 commentReq(id, start, function (res) {
                     let data = res.data;
-                    if (data != '' && data[0].length > 0) {
+
+                    console.log(res);
+                    if (data && data[0].length) {
                         state.commentList.data = state.commentList.data.concat(data[0]);
                     } else {
                         state.commentList.finished = true;

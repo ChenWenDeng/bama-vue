@@ -1,3 +1,5 @@
+import { req_get } from '../utils/request';
+
 function doCommentReq(url, data) {
     let token = '';
     let opts = {
@@ -24,10 +26,9 @@ function doCommentReq(url, data) {
 }
 
 function commentReq(id, start, callback) {
-    let HOST_URL = process.env.HOST_URL;
     let API_URL = 'api/user/comments';
 
-    if (typeof start == 'undefined') start = 0;
+    if (typeof start === 'undefined') start = 0;
     let pageRow = 20;
 
 
@@ -38,18 +39,9 @@ function commentReq(id, start, callback) {
         limit: start + ',' + pageRow
     };
 
-    let urlParamArr = [];
-    for (let key in data) {
-        urlParamArr.push(key + '=' + data[key]);
-    }
-    let urlParam = '?' + urlParamArr.join('&');
-
-
-    let url = HOST_URL + API_URL + urlParam;
-
-    fetch(url).then(response => response.json()).then(json => {
-        typeof callback == "function" && callback(json.data);
-    });
+    req_get(API_URL, data, function (res) {
+        typeof callback === "function" && callback(res);
+    })
 }
 
 export {
