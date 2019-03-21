@@ -1,4 +1,5 @@
 import {recommendReq} from '../../api/article.js'
+import {req_get} from '../../utils/request'
 
 const state = {
     init: false,
@@ -109,13 +110,14 @@ const mutations = {
 
     },
     loadCarousel(state){
-        let url = process.env.HOST_URL + 'api/home/slides/1?status=1';
+        let url = 'api/home/slides/1?status=1';
 
-        fetch(url).then(response => response.json()).then(json => {
-            if (json.data.length > 0) {
-                state.carousel = json.data[0].items;
+        req_get(url, null, function (res) {
+            if (res.data.length > 0) {
+                state.carousel = res.data[0].items;
             }
         });
+
     },
     loadCircleRecommend(state) {
         if (!state.circleRecommend.finished) {

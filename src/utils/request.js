@@ -22,7 +22,7 @@ function req_get(url, data, callback) {
         method: 'GET',
         headers: {
             'XX-Token': storge.get('token'),
-            'XX-Device-Type': 'web',
+            'XX-Device-Type': 'mobile',
             'content-type': 'application/json'
         }
         })
@@ -54,7 +54,7 @@ function req_post(url, data, callback) {
         credentials: 'same-origin', // include, same-origin, *omit
         headers: {
             'XX-Token': storge.get('token'),
-            'XX-Device-Type': 'web',
+            'XX-Device-Type': 'mobile',
             'content-type': 'application/json'
         },
         method: 'POST', // *GET, POST, PUT, DELETE, etc.

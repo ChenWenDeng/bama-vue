@@ -33,7 +33,7 @@
         },
 
         created() {
-           this.init();
+           // this.init();
         },
 
         methods: {
@@ -56,10 +56,10 @@
                 }
             },
             doLogin(){
-                if (!this.openid) {
-                    Notify('请在微信浏览器中进行登录授权~');
-                    return true;
-                }
+                // if (!this.openid) {
+                //     Notify('请在微信浏览器中进行登录授权~');
+                //     return true;
+                // }
                 this.loading = true;
 
                 let that = this;

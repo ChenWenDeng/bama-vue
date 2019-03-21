@@ -8,7 +8,7 @@
                   :error.sync="collectionError"
                   error-text="请求失败，点击重新加载"
                   @load="loadCollection">
-            <article-item-cc v-for="(value, key) in collection" :key="key" :item="value" @click="read(value)"></article-item-cc>
+            <collection-item-cc v-for="(value, key) in collection" :key="key" :item="value" @click="read(value)"></collection-item-cc>
         </van-list>
     </div>
 </template>
@@ -61,6 +61,6 @@
     }
 </script>
 
-<style scoped>
+<style type="text/css">
 
 </style>

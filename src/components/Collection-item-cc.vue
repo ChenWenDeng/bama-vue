@@ -3,29 +3,9 @@
         <div class="article-item-main-cc">
             <img class="article-item-thumbnail-cc" v-lazy="img">
             <div class="article-item-main-right-cc">
-
-                <div style="margin-bottom: 4px;">
-                    <div style="float: left;margin-top: 2px;">
-                        <template v-for="(value, key) in tag">
-                            <van-tag v-if="key == 'top' || key == 'recommended'" plain :key="key" :color="tagColor(key)">{{value }}</van-tag>
-                        </template>
-                    </div>
-                    <div style="overflow: hidden;">
-                        <h4 class="article-item-title-cc">{{ title }}</h4>
-                    </div>
-                </div>
-
+                <h4 class="article-item-title-cc">{{ title }}</h4>
                 <p class="describe-cc">{{ brief }}</p>
             </div>
-        </div>
-        <div class="article-info-cc">
-            <template v-for="(value, key) in tag">
-                <van-tag v-if="key != 'top' && key != 'recommended'" :key="key" plain :color="tagColor(key)">{{ value
-                    }}
-                </van-tag>
-            </template>
-            <span>{{comment_count}}人评论</span>
-            <span class="article-time-cc">{{ publish }}</span>
         </div>
     </div>
 </template>
@@ -33,7 +13,6 @@
 <script>
     import Vue from 'vue';
     import {Tag, Lazyload} from 'vant';
-    import {handlePublishTimeDesc} from '../utils/time.js'
 
     // options 为可选参数，无则不传
     Vue.use(Lazyload, '');
@@ -49,41 +28,13 @@
                 return this.item.thumbnail;
             },
             title: function () {
-                return this.item.post_title;
+                return this.item.title;
             },
             brief: function () {
-                return this.item.post_excerpt;
+                return this.item.description;
             },
-            favorites: function () {
-                return this.item.post_favorites;
-            },
-            like: function () {
-                return this.item.post_like;
-            },
-            hits: function () {
-                return this.item.post_hits;
-            },
-            comment_count: function () {
-                return this.item.comment_count
-            },
-            tag: function () {
-                return this.item.tag;
-            },
-            publish: function () {
-                return handlePublishTimeDesc(this.item.published_time);
-            }
         },
 
-        data() {
-            return {
-                color: {
-                    default: '#f2826a',
-                    category: '#5bc0de',
-                    top: '#AEDD81',
-                    recommend: '#f34612'
-                }
-            }
-        },
 
         methods: {
             tagColor: function (key) {
@@ -109,6 +60,7 @@
     .article-item-main-cc {
         height: 90px;
         padding-top: 16px;
+        padding-bottom: 12px;
         overflow: hidden;
     }
 
@@ -144,15 +96,6 @@
         display: -webkit-box;
         -webkit-box-orient: vertical;
         -webkit-line-clamp: 3;
-    }
-
-    .article-info-cc {
-        overflow: hidden;
-        color: grey;
-        padding: 10px 12px;
-        font-size: 0.7rem;
-        height: 20px;
-        line-height: 20px;
     }
 
     .article-item-main-right-cc span {
