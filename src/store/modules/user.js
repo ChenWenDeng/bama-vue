@@ -1,4 +1,4 @@
-import {wxLoginReq} from "../../api/user";
+import {wxLoginReq, updateUserInfoReq} from "../../api/user";
 import storge from '../../utils/storge'
 
 const state = {
@@ -103,6 +103,14 @@ const mutations = {
 
         return state.userInfo;
     },
+    userInfoUpdate: (state) => {
+        updateUserInfoReq(state.userInfo, function (res) {
+            console.log(res);
+            if (res.code === 1) {
+                mutations.cacheInfo(state, state.token, state.userInfo);
+            }
+        });
+    },
     cacheInfo: (state, token, userInfo) => {
         if (token && userInfo) {
             storge.set('token', token);
@@ -156,6 +164,9 @@ const actions = {
     },
     checkAuth: function ({commit}, callback) {
         commit('checkAuth', callback);
+    },
+    userInfoUpdate: function ({commit}, userInfo) {
+        commit('userInfoUpdate', userInfo);
     }
 };
 

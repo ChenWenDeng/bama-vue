@@ -15,7 +15,14 @@ function collectionReq(data, callback) {
     req_get(api_url, data, callback);
 }
 
+function updateUserInfoReq(data, callback) {
+    let api_url = 'api/user/profile/userInfo';
+
+    req_post(api_url, data, callback);
+}
+
 export {
     wxLoginReq,
-    collectionReq
+    collectionReq,
+    updateUserInfoReq
 }
