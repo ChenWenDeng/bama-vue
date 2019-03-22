@@ -107,17 +107,16 @@
     }
 
     .article-item-main-cc {
-        height: 90px;
         padding-top: 16px;
         overflow: hidden;
     }
 
     .article-item-thumbnail-cc {
-        width: 130px;
-        height: 90px;
-        margin-left: 12px;
-        margin-right: 8px;
-        border-radius: 4px;
+        width: 8rem;
+        height: 5.8rem;
+        margin-left: 0.8rem;
+        margin-right: 0.6rem;
+        border-radius: 0.2rem;
         float: left;
     }
 

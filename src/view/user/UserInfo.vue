@@ -18,7 +18,7 @@
                 <input @change="update" v-model="userInfo.user_nickname" maxlength="28"/>
             </div>
         </div>
-        <div class="user-info-box">
+        <div class="user-info-box" @click="sexShow=!sexShow">
             <div class="user-info-item-left">
                 性别
             </div>
@@ -26,7 +26,7 @@
                 {{ sex[userInfo.sex] }}
             </div>
         </div>
-        <div class="user-info-box">
+        <div class="user-info-box" @click="birthdayShow=!birthdayShow">
             <div class="user-info-item-left">
                 生日
             </div>
@@ -51,20 +51,22 @@
             </div>
         </div>
 
-        <van-actionsheet
-                v-model="show"
-                :actions="actions"
-                @select="onSelect"
-        />
+        <van-actionsheet v-model="sexShow" title="选择性别">
+            <van-picker :columns="sex" :default-index="userInfo.sex" @change="sexUpdate" />
+        </van-actionsheet>
+
+        <van-actionsheet v-model="birthdayShow" title="选择生日">
+            <van-datetime-picker @confirm="birthdayUpdate" v-model="currentDate" type="date" :min-date="minDate" :max-date="maxDate"/>
+        </van-actionsheet>
     </div>
 </template>
 
 <script>
     import Vue from 'vue';
     import {mapGetters, mapMutations, mapActions} from 'vuex'
-    import {Cell, CellGroup, Notify, Uploader, Picker, Actionsheet} from 'vant';
+    import {Cell, CellGroup, Notify, Uploader, Picker, Actionsheet, DatetimePicker} from 'vant';
 
-    Vue.use(Cell).use(CellGroup).use(Notify).use(Uploader).use(Picker).use(Actionsheet);
+    Vue.use(Cell).use(CellGroup).use(Notify).use(Uploader).use(Picker).use(Actionsheet).use(DatetimePicker);
 
     export default {
         name: "UserInfo",
@@ -83,7 +85,7 @@
 
 
         created() {
-
+            this.currentDate = new Date(this.userInfo.birthday);
         },
 
         data() {
@@ -93,19 +95,24 @@
                     '男',
                     '女'
                 ],
-                show: false
+                sexShow: false,
+                birthdayShow: false,
+                minDate: new Date(1920, 1, 1),
+                maxDate: new Date(),
+                currentDate: null
             }
         },
 
         methods: {
-            toUserInfo() {
-
-            },
             onRead() {
 
             },
-            onSelect(){
-
+            birthdayUpdate(){
+                this.birthdayShow=!this.birthdayShow;
+                this.userInfo.birthday = this.currentDate.format("yyyy-MM-dd");
+            },
+            sexUpdate(picker, value, index){
+                this.userInfo.sex = index;
             },
             update() {
                 this.userInfoUpdate(this.userInfo);
