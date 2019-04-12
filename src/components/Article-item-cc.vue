@@ -7,7 +7,7 @@
                 <div style="margin-bottom: 4px;">
                     <div style="float: left;margin-top: 2px;">
                         <template v-for="(value, key) in tag">
-                            <van-tag v-if="key == 'top' || key == 'recommended'" plain :key="key" :color="tagColor(key)">{{value }}</van-tag>
+                            <van-tag v-if="key == 'top' || key == 'recommended'" plain :key="key" :color="tagColor(key)">{{ value }}</van-tag>
                         </template>
                     </div>
                     <div style="overflow: hidden;">
