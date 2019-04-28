@@ -7,7 +7,6 @@ function doCommentReq(url, data) {
         mode: 'cors',
         credentials: 'include',
         headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
             'XX-Token': token,
             'XX-Device-Type': 'wxapp',
         },

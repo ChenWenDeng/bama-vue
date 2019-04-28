@@ -18,10 +18,10 @@
         </div>
 
         <div class="control-panel-cc m-top-cc">
-            <div class="control-item-cc" @click="doLike(id)">
+            <div class="control-item-cc" @click="doLike">
                 <span class="fa fa-thumbs-o-up"></span>{{ like }}
             </div>
-            <div class="control-item-cc" @click="doCollect(id)">
+            <div class="control-item-cc" @click="doCollect">
                 <span class="fa fa-star"></span>收藏
             </div>
             <div class="control-item-cc">
@@ -137,11 +137,9 @@
             ...mapMutations('articleDetails', [
                 'read',
                 'loadComment',
-                'init'
+                'init',
+                'doLike'
             ]),
-            doLike: function () {
-                return true;
-            },
             doCollect: function () {
                 return true;
             },

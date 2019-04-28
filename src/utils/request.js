@@ -1,12 +1,12 @@
 import storge from './storge';
 
 function req_get(url, data, callback) {
-    // let HOST_URL = process.env.HOST_URL;
-    //
-    // let patt = /http/;
-    // if (!patt.test(url)) {
-    //     url = HOST_URL + url;
-    // }
+    let HOST_URL = process.env.HOST_URL;
+
+    let patt = /http/;
+    if (!patt.test(url)) {
+        url = HOST_URL + url;
+    }
 
     if (data) {
         let urlParamArr = [];
@@ -20,11 +20,14 @@ function req_get(url, data, callback) {
 
     var promise= fetch(url,{
         method: 'GET',
+        cache: 'default', // *default, no-cache, reload, force-cache, only-if-cached
         headers: {
             'XX-Token': storge.get('token'),
-            'XX-Device-Type': 'mobile',
-            'content-type': 'application/json'
-        }
+            'XX-Device-Type': 'wxapp',
+        },
+        mode: 'cors', // no-cors, cors, *same-origin
+        redirect: 'follow', // manual, *follow, error
+        referrer: 'no-referrer', // *client, no-referrer
         })
         .then(response => response.json())
         .catch(function(err) {
@@ -40,22 +43,64 @@ function req_get(url, data, callback) {
     })
 }
 
-function req_post(url, data, callback) {
-    // let HOST_URL = process.env.HOST_URL;
-    //
-    // let patt = /http/;
-    // if (!patt.test(url)) {
-    //     url = HOST_URL + url;
-    // }
+function req_post_no_auth(url, data, callback) {
+    let HOST_URL = process.env.HOST_URL;
+
+    let patt = /http/;
+    if (!patt.test(url)) {
+        url = HOST_URL + url;
+    }
 
     let options = {
         body: JSON.stringify(data), // must match 'Content-Type' header
-        cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+        cache: 'default', // *default, no-cache, reload, force-cache, only-if-cached
         credentials: 'same-origin', // include, same-origin, *omit
         headers: {
-            'XX-Token': storge.get('token'),
-            'XX-Device-Type': 'mobile',
-            'content-type': 'application/json'
+            'Content-Type': 'application/json'
+        },
+        method: 'POST', // *GET, POST, PUT, DELETE, etc.
+        mode: 'cors', // no-cors, cors, *same-origin
+        redirect: 'follow', // manual, *follow, error
+        referrer: 'no-referrer', // *client, no-referrer
+    };
+
+    var promise= fetch(url, options)
+        .then(response => response.json())
+        .catch(function(err) {
+            // Error :(
+            console.log(err);
+        });
+
+    promise.then(function (data) {
+        // console.log(data)
+        typeof callback === "function" && callback(data);
+    }).catch(function (error) {
+        console.log(error)
+    });
+}
+
+function req_post(url, data, callback) {
+    let token = storge.get('token');
+    console.log(token);
+    if (!token) {
+        throw '请先登录！'
+    }
+
+    let HOST_URL = process.env.HOST_URL;
+
+    let patt = /http/;
+    if (!patt.test(url)) {
+        url = HOST_URL + url;
+    }
+
+    let options = {
+        body: JSON.stringify(data), // must match 'Content-Type' header
+        cache: 'default', // *default, no-cache, reload, force-cache, only-if-cached
+        credentials: 'same-origin', // include, same-origin, *omit
+        headers: {
+            'XX-Token': token,
+            'XX-Device-Type': 'wxapp',
+            'Content-Type': 'application/json'
         },
         method: 'POST', // *GET, POST, PUT, DELETE, etc.
         mode: 'cors', // no-cors, cors, *same-origin
@@ -80,5 +125,6 @@ function req_post(url, data, callback) {
 
 export {
     req_get,
-    req_post
+    req_post,
+    req_post_no_auth
 };

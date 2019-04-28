@@ -51,7 +51,7 @@ const mutations = {
             state.init = !state.init;
 
             mutations.loadCategory(state);
-            mutations.loadNews(state);
+            // mutations.loadNews(state);
         }
 
     },

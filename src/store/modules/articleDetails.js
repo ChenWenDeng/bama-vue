@@ -1,5 +1,5 @@
 import {commentReq} from '../../api/comment.js'
-import {readReq} from '../../api/article.js'
+import {readReq, doLikeReq} from '../../api/article.js'
 
 const state = {
     article: {},
@@ -67,7 +67,20 @@ const mutations = {
 
             }, 500);
         }
-    }
+    },
+    doLike(state) {
+        try{
+            let data = {
+                id : state.article.id
+            };
+            doLikeReq(data, function (res) {
+                console.log(res);
+            })
+        }catch (err) {
+            console.log(err);
+        }
+
+    },
 };
 
 const actions = {

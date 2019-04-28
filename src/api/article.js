@@ -1,5 +1,10 @@
-import { req_get } from '../utils/request';
+import { req_get, req_post } from '../utils/request';
 
+/**
+ * 获取文章详情
+ * @param id
+ * @param callback
+ */
 function readReq(id, callback) {
     let api_url = 'api/portal/articles/read';
 
@@ -11,6 +16,12 @@ function readReq(id, callback) {
     req_get(api_url, data, callback);
 }
 
+/**
+ * 获取相关的文章列表
+ * @param data
+ * @param callback
+ * @returns {boolean}
+ */
 function articleListReq(data, callback) {
     let api_url = 'api/portal/articles/category';
 
@@ -21,6 +32,12 @@ function articleListReq(data, callback) {
     }
 }
 
+/**
+ * 搜索请求
+ * @param keyword
+ * @param callback
+ * @returns {boolean}
+ */
 function searchReq(keyword, callback) {
     let api_url = 'api/portal/search';
 
@@ -34,6 +51,12 @@ function searchReq(keyword, callback) {
     req_get(api_url, data, callback);
 }
 
+/**
+ * 获取推荐内容
+ * @param data
+ * @param callback
+ * @returns {boolean}
+ */
 function recommendReq(data, callback){
     let api_url = 'api/portal/articles/recommend';
 
@@ -44,9 +67,26 @@ function recommendReq(data, callback){
     }
 }
 
+/**
+ * 关注请求
+ * @param data
+ * @param callback
+ * @returns {boolean}
+ */
+function doLikeReq(data, callback) {
+    let api_url = 'api/portal/articles/doLike';
+
+    if (data) {
+        req_post(api_url, data, callback);
+    } else {
+        return false;
+    }
+}
+
 export {
     readReq,
     articleListReq,
     searchReq,
-    recommendReq
+    recommendReq,
+    doLikeReq
 }
