@@ -1,10 +1,12 @@
 import {wxLoginReq, updateUserInfoReq} from "../../api/user";
 import storge from '../../utils/storge'
+import storage from '@/utils/storage'
 
 const state = {
-    token: null,
-    userInfo: null,
-
+    // token: null,
+    // userInfo: null,
+    token: storage.localGet('token') || null,
+    userInfo: storage.localGet('userInfo') || null,
     menu: [
         {
             id: 0,
@@ -100,12 +102,10 @@ const mutations = {
     },
     userInfo: (state) => {
         !state.userInfo && mutations.loadCacheInfo(state);
-
         return state.userInfo;
     },
     userInfoUpdate: (state) => {
         updateUserInfoReq(state.userInfo, function (res) {
-            console.log(res);
             if (res.code === 1) {
                 mutations.cacheInfo(state, state.token, state.userInfo);
             }

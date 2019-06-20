@@ -2,6 +2,7 @@ import {commentReq} from '../../api/comment.js'
 import {readReq, doLikeReq} from '../../api/article.js'
 
 const state = {
+
     article: {},
     commentList: {
         loading: false,
@@ -69,27 +70,34 @@ const mutations = {
         }
     },
     doLike(state) {
-        try{
-            let data = {
-                id : state.article.id
-            };
-            doLikeReq(data, function (res) {
-                console.log(res);
-            })
-        }catch (err) {
-            console.log(err);
-        }
-
+        let data = {
+            id: state.article.id
+        };
+        doLikeReq(data, function (res) {
+            console.log(res);
+        })
     },
 };
 
 const actions = {
+    init({commit}) {
+        commit('init')
+    },
     read({commit}) {
         commit('read')
     },
     loadComment({commit}) {
         commit('loadComment')
     },
+    doLike(options){
+        try{
+            options.commit('doLike')
+        }catch (e) {
+            if (e == 110){
+                console.log(options)
+            }
+        }
+    }
 };
 
 export default {

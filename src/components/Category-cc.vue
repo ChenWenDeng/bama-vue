@@ -45,6 +45,7 @@
 <style type="text/css">
     .van-row{
         background: white;
+        margin: 0 0.6rem;
     }
 
     .category-item-cc{
@@ -61,6 +62,7 @@
         padding: 0 5px;
         font-size: 12px;
         line-height: 14px;
+        color: #666666;
     }
 
 </style>

@@ -5,6 +5,10 @@
 </template>
 
 <style>
+html{
+    width: 100%!important;
+    height: 100%!important;
+}
     body {
         font-size: 0.9rem;
         -webkit-font-smoothing: antialiased;

@@ -46,12 +46,12 @@ const state = {
         "slide_id": 2,
         "status": 1,
         "list_order": 10000,
-        "title": "话题回顾",
+        "title": "老年社区",
         "image": "https://klzz.hualinginfo.com/upload/admin/20190219/f4d52f907673b9be7979405f20c84ed7.png",
         "url": "#",
         "target": "",
-        "description": "话题回顾",
-        "content": "话题回顾",
+        "description": "老年社区",
+        "content": "communities",
         "more": null
     }, {
         "id": 10,

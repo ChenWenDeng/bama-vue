@@ -8,7 +8,12 @@ import search from './modules/search'
 import user from './modules/user'
 import collection from './modules/collection'
 import articleDetails from './modules/articleDetails'
-
+import register from './modules/register'
+import NewLogin from './modules/NewLogin'
+import fillMessage from './modules/fillMessage'
+import registration from './modules/registration'
+import common from './modules/common'
+import communities from './modules/communities'
 Vue.use(Vuex);
 
 const store = new Vuex.Store({
@@ -22,10 +27,18 @@ const store = new Vuex.Store({
         search,
         user,
         collection,
-        articleDetails
+        articleDetails,
+        register,
+        NewLogin,
+        fillMessage,
+        registration,
+        common,
+        communities
     }
 });
 
 export {
     store
 }
+
+

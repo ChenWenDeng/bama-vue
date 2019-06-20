@@ -7,6 +7,10 @@ import {store} from './store/store.js';
 
 import load_components from './components/load.js';
 
+import {Toast } from 'vant';
+Vue.use(Toast);
+
+
 load_components;
 
 new Vue({

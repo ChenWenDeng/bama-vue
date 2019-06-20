@@ -1,5 +1,10 @@
 import storge from './storge';
 
+import Vue from 'vue'
+import {Dialog} from 'vant'
+
+Vue.use(Dialog);
+
 function req_get(url, data, callback) {
     let HOST_URL = process.env.HOST_URL;
 
@@ -80,12 +85,9 @@ function req_post_no_auth(url, data, callback) {
 }
 
 function req_post(url, data, callback) {
-    let token = storge.get('token');
-    console.log(token);
-    if (!token) {
-        throw '请先登录！'
-    }
+    if (!checkAuth()) return false;
 
+    let token = storge.get('token');
     let HOST_URL = process.env.HOST_URL;
 
     let patt = /http/;
@@ -121,6 +123,19 @@ function req_post(url, data, callback) {
     }).catch(function (error) {
         console.log(error)
     });
+}
+
+function checkAuth() {
+    let token = storge.get('token');
+
+    if (!token) {
+        Dialog.alert({
+            message: '请先登录！'
+        }).then(() => {
+            // on close
+
+        });
+    }
 }
 
 export {

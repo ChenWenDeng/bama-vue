@@ -105,6 +105,60 @@ const routes = [
         },
         props: true
     },
+    {
+        name:'newLogin',
+        path:'/newLogin',
+        component: () => import('./view/newLogin/NewLogin.vue'),
+        meta: {
+            title: '新的登录'
+        },
+        props: true
+    },
+    {
+        name:'register',
+        path:'/register',
+        component: () => import('./view/register/register.vue'),
+        meta: {
+            title: '注册'
+        },
+        props: true
+    },
+    {
+        name:'fillMessage',
+        path:'/fillMessage',
+        component: () => import('./view/fillMessage/fillMessage.vue'),
+        meta: {
+            title: '填写资料'
+        },
+        props: true
+    },
+    {
+        name:'doctorTeam',
+        path:'/doctorTeam',
+        component: () => import('./view/doctorTeam/doctorTeam.vue'),
+        meta: {
+            title: '医生团队'
+        },
+        props: true
+    },
+    {
+        name:'registration',
+        path:'/registration',
+        component: () => import('./view/doctorTeam/registration.vue'),
+        meta: {
+            title: '预约挂号'
+        },
+        props: true
+    },
+    {
+        name:'communities',
+        path:'/communities',
+        component: () => import('./view/communities/communities.vue'),
+        meta: {
+            title: '老年社区'
+        },
+        props: true
+    }
 ];
 
 routes.forEach(route => {
