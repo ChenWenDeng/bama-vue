@@ -15,9 +15,18 @@
         <p>舞动健康，舞动快乐</p>
         <span class="span2">10万次浏览</span>
       </div>
+      <!-- <div class="img"  @click="push(showdata.id)">
+        <span class="span1">热议话题</span>
+        <p>{{showdata.description}}</p>
+        <span class="span2">{{showdata.hits}}次浏览</span>
+      </div> -->
       <div class="ul">
         <ul>
-          <li v-for="(item,index) in lists" :key="index" @click="push(item.id)">{{lists[index].post_title}}</li>
+          <li
+            v-for="(item,index) in lists"
+            :key="index"
+            @click="push(item.id)"
+          >{{lists[index].post_title}}</li>
         </ul>
       </div>
     </div>
@@ -112,7 +121,8 @@ export default {
       lists: [],
       loading: false,
       finished: false,
-      active: 0
+      active: 0,
+      showdata: ""
     };
   },
   methods: {
@@ -162,11 +172,25 @@ export default {
         },
         afterCallback() {}
       });
+    },
+    _showhot() {
+      let vm = this;
+      vm.$store.dispatch("communities/showhot", {
+        id: 4,
+        scCallback(res) {
+          if (res.code == 1) {
+            vm.showdata = res.data;
+          } else {
+          }
+        },
+        afterCallback() {}
+      });
     }
   },
   mounted() {
     this._qieHuang(0);
     this._show();
+    this._showhot();
   }
 };
 </script>

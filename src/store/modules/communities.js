@@ -53,6 +53,24 @@ const actions = {
                 data.afterCallback && data.afterCallback()
             }
         })
+    },
+    showhot({commit, dispatch}, data = {}) {
+        const params = {
+          id:data.id
+        }
+        fetch({commit,params, dispatch, method: 'get',
+            url: getUrl2('get_hotList'),
+            before() {
+            },
+            success ({ res, commit, dispatch }) {
+                data.scCallback && data.scCallback(res);
+            },
+            error ({ err, commit, dispatch }){
+            },
+            after () {
+                data.afterCallback && data.afterCallback()
+            }
+        })
     }
 
 }
