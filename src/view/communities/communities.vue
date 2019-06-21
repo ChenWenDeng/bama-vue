@@ -207,6 +207,7 @@ export default {
       .left-title {
         font-size: 14px;
         padding-left: 6px;
+        color: #000;
       }
     }
   }
