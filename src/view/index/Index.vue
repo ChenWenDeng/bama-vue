@@ -18,7 +18,7 @@
 
     <div class="recommend-cc m-top-cc">
       <div class="recommend-title-cc">
-        <h3 class="recommend-left-cc">每周话题</h3>
+        <h3 class="recommend-left-cc">每周话题1</h3>
         <!-- <p class="recommend-right-cc">更多话题</p> -->
       </div>
       <van-list finished-text="没有更多了" error-text="请求失败，点击重新加载">
