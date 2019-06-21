@@ -19,7 +19,7 @@
         <span class="span1">热议话题</span>
         <p>{{showdata.description}}</p>
         <span class="span2">{{showdata.hits}}次浏览</span>
-      </div> -->
+      </div>-->
       <div class="ul">
         <ul>
           <li
@@ -202,10 +202,11 @@ export default {
       display: flex;
       align-items: center;
       i {
-        font-size: 1.125rem;
+        font-size: 1rem;
       }
       .left-title {
-        font-size: 1.0625rem;
+        font-size: 14px;
+        padding-left: 6px;
       }
     }
   }

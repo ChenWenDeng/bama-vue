@@ -15,7 +15,7 @@
     </div>
 
     <div class="user-info-box">
-      <div class="user-info-item-left">昵称1</div>
+      <div class="user-info-item-left">昵称</div>
       <div class="user-info-item-right">
         <!-- <input @change="update" v-model="userInfo.user_nickname" maxlength="28"> -->
          <input @change="upLoad('nc')" v-model="userList.user_nickname" maxlength="28">
