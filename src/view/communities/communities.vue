@@ -30,7 +30,7 @@
       <van-tabs v-model="active" animated @click="_qieHuang">
         <van-tab title="热门话题">
           <ul>
-            <li v-for="(item,index) in list" :key="index" @click="push(item.id)">
+            <li v-for="(item,index) in list" :key="index" @click="push(item.id)"  v-if="list.length > 0">
               <img :src="item.thumbnail" alt class="img1">
               <div class="article-cc">
                 <div style="padding-bottom: 4px; overflow: hidden;">
@@ -55,11 +55,12 @@
                 </div>
               </div>
             </li>
+            <li v-if="list.length == 0" style="text-align:center">暂无内容...</li>
           </ul>
         </van-tab>
         <van-tab title="社区生活">
           <ul>
-            <li v-for="(item,index) in list" :key="index" @click="push(item.id)">
+            <li v-for="(item,index) in list" :key="index" @click="push(item.id)" v-if="list.length > 0">
               <img :src="item.thumbnail" alt class="img1">
               <div class="article-cc">
                 <div style="padding-bottom: 4px; overflow: hidden;">
@@ -84,6 +85,7 @@
                 </div>
               </div>
             </li>
+             <li v-if="list.length == 0" style="text-align:center">暂无内容...</li>
           </ul>
         </van-tab>
       </van-tabs>
@@ -115,7 +117,7 @@ export default {
 			if (this.active == 0) {
 				let vm = this;
 				vm.$store.dispatch("communities/showAcrticle", {
-					category_id: 5,
+					category_id: 74,
 					pid: 11,
 					scCallback(res) {
 						if (res.code == 1) {
@@ -128,7 +130,7 @@ export default {
 			} else {
 				let vm = this;
 				vm.$store.dispatch("communities/showAcrticle", {
-					category_id:5,
+					category_id:75,
 					pid: 11,
 					scCallback(res) {
 						if (res.code == 1) {
