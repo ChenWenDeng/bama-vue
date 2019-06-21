@@ -53,7 +53,7 @@
                     >置顶</span>
                     <span
                       class="van-tag van-tag--plain van-hairline--surround"
-                      style="color: rgb(68, 146, 255);"
+                      style="color: rgb(68, 146, 255);margin-left:0.4rem"
                     >推荐</span>
                     <!---->
                   </div>
@@ -88,7 +88,7 @@
                     >置顶</span>
                     <span
                       class="van-tag van-tag--plain van-hairline--surround"
-                      style="color: rgb(68, 146, 255);"
+                      style="color: rgb(68, 146, 255);margin-left:0.4rem"
                     >推荐</span>
                     <!---->
                   </div>
@@ -190,7 +190,7 @@ export default {
   mounted() {
     this._qieHuang(0);
     this._show();
-    this._showhot();
+    // this._showhot();
   }
 };
 </script>
@@ -207,7 +207,7 @@ export default {
       .left-title {
         font-size: 14px;
         padding-left: 6px;
-        color: #000;
+        color: #fff;
       }
     }
   }
