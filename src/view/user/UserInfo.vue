@@ -306,7 +306,9 @@ export default {
 .userInfo .avatar {
   width: 70px;
   height: 70px;
+  display: block;
   border-radius: 50%;
+  border: 1px solid #fff;
 }
 
 .userInfo .head-user-info .user-level {
