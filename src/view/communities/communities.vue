@@ -17,12 +17,7 @@
       </div>
       <div class="ul">
         <ul>
-          <li>舞动健康，舞动快乐</li>
-          <li class="li1">生活越来越好了为...</li>
-          <li>舞动健康舞动快乐...</li>
-          <li class="li1">舞动健康，舞动快乐</li>
-          <li>舞动健康，舞动快乐</li>
-          <li class="li1">大家热议话题</li>
+          <li v-for="(item,index) in lists" :key="index" @click="push(item.id)">{{lists[index].post_title}}</li>
         </ul>
       </div>
     </div>
@@ -30,7 +25,12 @@
       <van-tabs v-model="active" animated @click="_qieHuang">
         <van-tab title="热门话题">
           <ul>
-            <li v-for="(item,index) in list" :key="index" @click="push(item.id)"  v-if="list.length > 0">
+            <li
+              v-for="(item,index) in list"
+              :key="index"
+              @click="push(item.id)"
+              v-if="list.length > 0"
+            >
               <img :src="item.thumbnail" alt class="img1">
               <div class="article-cc">
                 <div style="padding-bottom: 4px; overflow: hidden;">
@@ -60,7 +60,12 @@
         </van-tab>
         <van-tab title="社区生活">
           <ul>
-            <li v-for="(item,index) in list" :key="index" @click="push(item.id)" v-if="list.length > 0">
+            <li
+              v-for="(item,index) in list"
+              :key="index"
+              @click="push(item.id)"
+              v-if="list.length > 0"
+            >
               <img :src="item.thumbnail" alt class="img1">
               <div class="article-cc">
                 <div style="padding-bottom: 4px; overflow: hidden;">
@@ -85,7 +90,7 @@
                 </div>
               </div>
             </li>
-             <li v-if="list.length == 0" style="text-align:center">暂无内容...</li>
+            <li v-if="list.length == 0" style="text-align:center">暂无内容...</li>
           </ul>
         </van-tab>
       </van-tabs>
@@ -104,47 +109,64 @@ export default {
   data() {
     return {
       list: [],
+      lists: [],
       loading: false,
       finished: false,
-			active : 0
+      active: 0
     };
   },
   methods: {
     push(id) {
       this.$router.push("content/" + id);
     },
-		_qieHuang(){
-			if (this.active == 0) {
-				let vm = this;
-				vm.$store.dispatch("communities/showAcrticle", {
-					category_id: 74,
-					pid: 11,
-					scCallback(res) {
-						if (res.code == 1) {
-							vm.list = res.data;
-						} else {
-						}
-					},
-					afterCallback() {}
-				});
-			} else {
-				let vm = this;
-				vm.$store.dispatch("communities/showAcrticle", {
-					category_id:75,
-					pid: 11,
-					scCallback(res) {
-						if (res.code == 1) {
-							vm.list = res.data;
-						} else {
-						}
-					},
-					afterCallback() {}
-				});
-			}
-		}
+    _qieHuang() {
+      if (this.active == 0) {
+        let vm = this;
+        vm.$store.dispatch("communities/showAcrticle", {
+          category_id: 74,
+          pid: 11,
+          scCallback(res) {
+            if (res.code == 1) {
+              vm.list = res.data;
+            } else {
+            }
+          },
+          afterCallback() {}
+        });
+      } else {
+        let vm = this;
+        vm.$store.dispatch("communities/showAcrticle", {
+          category_id: 75,
+          pid: 11,
+          scCallback(res) {
+            if (res.code == 1) {
+              vm.list = res.data;
+            } else {
+            }
+          },
+          afterCallback() {}
+        });
+      }
+    },
+    _show() {
+      let vm = this;
+      vm.$store.dispatch("communities/pAcrticle", {
+        category_id: 24,
+        order: "post_like desc,comment_count desc",
+        limit: "6",
+        scCallback(res) {
+          if (res.code == 1) {
+            vm.lists = res.data;
+          } else {
+          }
+        },
+        afterCallback() {}
+      });
+    }
   },
   mounted() {
     this._qieHuang(0);
+    this._show();
   }
 };
 </script>
@@ -215,6 +237,9 @@ export default {
           height: 2.5rem;
           line-height: 2.5rem;
           padding-left: 4%;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
           &:nth-child(3) {
             border-top: 1px solid #f0f0f0;
             border-bottom: 1px solid #f0f0f0;
