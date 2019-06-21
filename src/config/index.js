@@ -125,7 +125,10 @@ const url = {
         user_XinXi:'api/user/profile/userInfo',
 
         //预约
-        get_registration:'api/user/reserve'
+        get_registration:'api/user/reserve',
+
+        //热议话题
+        get_hotList:'api/portal/category/info'
         
     }
 }
