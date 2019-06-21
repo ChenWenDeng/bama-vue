@@ -1,14 +1,49 @@
 import storge from '../../utils/storge'
 
 const state = {
+    // tabers: [
+    //     {name: 'index', title: '首页', icon: 'wap-home', path: '/index'},
+    //     {name: 'news', title: '更多资讯', icon: 'newspaper-o', path: '/news'},
+    //     {name: 'home', title: '答题', icon: 'orders-o', path: ''}
+    // ],
     tabers: [
-        {name: 'index', title: '首页', icon: 'wap-home', path: '/index'},
-        {name: 'news', title: '更多资讯', icon: 'newspaper-o', path: '/news'},
-        {name: 'home', title: '答题', icon: 'orders-o', path: ''}
+        {
+            name: 'index', 
+            title: '首页', 
+            active: 'iconfont iconziyuan9',
+            normal:'iconfont iconziyuan12', 
+            path: '/index'
+        },{
+            name: 'news', 
+            title: '更多资讯', 
+            active: 'iconfont iconziyuan15',
+            normal:'iconfont iconziyuan13', 
+            path: '/news'
+        },{
+            name: 'home', 
+            title: '答题', 
+            active: 'iconfont iconziyuan14',
+            normal:'iconfont iconziyuan10',  
+            path: ''
+        }
     ],
     active: 0,
-    loginComponent: {name: 'login', title: '个人中心', icon: 'contact', path: '/login'},
-    userComponent: {name: 'user', title: '个人中心', icon: 'contact', path: '/user'},
+    loginComponent: {
+        name: 'login', 
+        title: '个人中心', 
+        icon: 'contact', 
+        path: '/login',
+        active: 'iconfont iconziyuan11',
+        normal:'iconfont iconziyuan16', 
+    },
+    userComponent: {
+        name: 'user', 
+        title: '个人中心', 
+        icon: 'contact', 
+        path: '/user',
+        active: 'iconfont iconziyuan11',
+        normal:'iconfont iconziyuan16', 
+    },
 };
 
 const setter = {};

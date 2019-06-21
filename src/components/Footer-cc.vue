@@ -1,7 +1,12 @@
 <template>
     <div>
         <van-tabbar v-model="active" @change="change(active)">
-            <van-tabbar-item v-for="taber in tabers" :key="taber.name" :icon="taber.icon" :info="taber.info">{{taber.title}}</van-tabbar-item>
+            <van-tabbar-item v-for="taber in tabers" :key="taber.name">
+                <span>{{taber.title}}</span>
+                <i slot="icon" slot-scope="props" :class="props.active ? taber.active : taber.normal"></i>
+            </van-tabbar-item>
+ 
+            <!-- <van-tabbar-item v-for="taber in tabers" :key="taber.name" :icon="taber.icon" :info="taber.info">{{taber.title}}</van-tabbar-item> -->
         </van-tabbar>
     </div>
 </template>
