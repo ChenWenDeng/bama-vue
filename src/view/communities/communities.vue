@@ -21,7 +21,7 @@
         <span class="span2">{{showdata.hits}}次浏览</span>
       </div>-->
       <div class="ul">
-        <ul>
+        <ul  v-if="lists.length > 0">
           <li
             v-for="(item,index) in lists"
             :key="index"
