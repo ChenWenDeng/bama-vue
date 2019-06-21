@@ -32,6 +32,27 @@ const actions = {
                 data.afterCallback && data.afterCallback()
             }
         })
+    },
+
+    pAcrticle({commit, dispatch}, data = {}) {
+        const params = {
+            category_id : data.category_id,
+            order: data.order,
+            limit:data.limit
+        }
+        fetch({commit,params, dispatch, method: 'get',
+            url: getUrl2('get_articleList'),
+            before() {
+            },
+            success ({ res, commit, dispatch }) {
+                data.scCallback && data.scCallback(res);
+            },
+            error ({ err, commit, dispatch }){
+            },
+            after () {
+                data.afterCallback && data.afterCallback()
+            }
+        })
     }
 
 }

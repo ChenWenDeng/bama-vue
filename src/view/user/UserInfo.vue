@@ -15,7 +15,7 @@
     </div>
 
     <div class="user-info-box">
-      <div class="user-info-item-left">昵称</div>
+      <div class="user-info-item-left">昵称1</div>
       <div class="user-info-item-right">
         <!-- <input @change="update" v-model="userInfo.user_nickname" maxlength="28"> -->
          <input @change="upLoad('nc')" v-model="userList.user_nickname" maxlength="28">
@@ -26,11 +26,14 @@
       <!-- <div class="user-info-item-right">{{ sex[userInfo.sex] }}</div> -->
       <div class="user-info-item-right">{{ userList.sex == 1 ? '男' : userList.sex == 2 ? '女':'保密' }}</div>
     </div>
-    <div class="user-info-box" @click="birthdayShow=!birthdayShow">
+    <!-- <div class="user-info-box" @click="birthdayShow=!birthdayShow">
       <div class="user-info-item-left">生日</div>
-      <!-- <div class="user-info-item-right">{{ userInfo.birthday }}</div> -->
       <div class="user-info-item-right">{{ format(userList.birthday) }}</div>
-    </div>
+    </div> -->
+		<div class="shengRi-container" @click="show=true">
+			<span class="user-info-item-left">生日</span>
+			<input type="text" v-model="shengRi">
+		</div>
     <div class="user-info-box">
       <div class="user-info-item-left">身高 mm</div>
       <div class="user-info-item-right">
@@ -50,22 +53,14 @@
       <van-picker :columns="sex" :default-index="userInfo.sex" @change="sexUpdate"/>
        <!-- <van-picker :columns="sex" :default-index="userList.sex" @change="upLoad('xb')"/> -->
     </van-actionsheet>
-
-    <van-actionsheet v-model="birthdayShow" title="选择生日">
-      <!-- <van-datetime-picker
-        @confirm="birthdayUpdate"
-        v-model="currentDate"
-        type="date"
-        :min-date="minDate"
-        :max-date="maxDate"
-      /> -->
-      <van-datetime-picker
-        v-model="currentDate1"
-        type="date"
-        :min-date="minDate"
-        @confirm="birthdayUpdate"
-      />
-    </van-actionsheet>
+		<van-popup v-model="show" position="bottom" :overlay="true">
+			<van-datetime-picker
+				v-model="currentDate2"
+				type="date"
+				@cancel="_cancel"
+				 @confirm="_confirm"
+			/>
+		</van-popup>
   </div>
 </template>
 
@@ -79,7 +74,8 @@ import {
   Uploader,
   Picker,
   Actionsheet,
-  DatetimePicker
+  DatetimePicker,
+	Popup 
 } from "vant";
 import storage from "@/utils/storage";
 import { Toast} from 'vant';
@@ -90,7 +86,8 @@ Vue.use(Cell)
   .use(Uploader)
   .use(Picker)
   .use(Actionsheet)
-  .use(DatetimePicker);
+  .use(DatetimePicker)
+	.use(Popup );
 
 export default {
   name: "UserInfo",
@@ -102,8 +99,6 @@ export default {
   },
 
   created() {
-    // this.currentDate = new Date(this.userInfo.birthday);
-    // this.currentDate = new Date(this.userList.birthday);
   },
   mounted(){
     this.init()
@@ -113,25 +108,38 @@ export default {
       sex: ["保密", "男", "女"],
       sexShow: false,
       birthdayShow: false,
-      minDate: new Date(1920, 1, 1),
-      maxDate: new Date(),
-      currentDate: null,
       userList:[],
       can:null,
-      currentDate1: new Date()
+			currentDate2: new Date(),
+			show:false,
+			shengRi:null
     };
   },
   methods: {
-    onRead() {},
-    birthdayUpdate() {
-      // this.birthdayShow = !this.birthdayShow;
-      // this.userList.birthday = this.currentDate.format("yyyy-MM-dd");
-      var datees = new Date();
-      var dates = datees.getTime()
-      console.log( this.birthdayShow)
-      console.log( dates)
-      this.upLoad('sr',dates)
+		//转日期
+		formatTen(num) { 
+			return num > 9 ? (num + "") : ("0" + num); 
+		} ,
+		//转日期
+		formatDate(date) { 
+			var year = date.getFullYear(); 
+			var month = date.getMonth() + 1; 
+			var day = date.getDate(); 
+			var hour = date.getHours(); 
+			var minute = date.getMinutes(); 
+			var second = date.getSeconds(); 
+			return year + "-" + this.formatTen(month) + "-" + this.formatTen(day); 
+		},
+		//取消按钮
+    _cancel(){
+    		this.show = false;
     },
+		//确定按钮
+		_confirm(value){
+			this.shengRi = this.formatDate(value)
+			this.upLoad('sr',this.formatDate(value))
+			this.show = false
+		},
     sexUpdate(picker, value, index) {
       this.userList.sex = index;
       console.log(value)
@@ -214,6 +222,7 @@ export default {
       .catch(error => console.error("Error:", error))
       .then(response => {
           this.userList = response.data
+					this.shengRi = this.format(this.userList.birthday)
       });
     },
     // 选择图片后执行
@@ -267,7 +276,7 @@ export default {
 };
 </script>
 
-<style type="text/css">
+<style type="text/css" lang="scss">
 .userInfo .van-cell-group .van-cell,
 .user-box .van-cell-group .van-icon {
   font-size: 1rem;
@@ -302,6 +311,29 @@ export default {
 
 .userInfo .head-user-info .user-level {
   font-size: 0.8rem;
+}
+.shengRi-container{
+	display: flex;
+	width: 100%;
+	height: 50px;
+	background: #fff;
+	align-items: center;
+	border-top:1px solid #eeeeee;
+	span{
+		width: 88px;
+		margin-left: 24px;
+		color:#5f5f5f;
+		font-size: 1rem;
+		color:#5f5f5f;
+	}
+	input{
+		display: flex;
+		align-items: center;
+		width: 100%;
+		height: 45px;
+		border:none;
+		padding-left: 30px;
+	}
 }
 
 .userInfo .user-info-box {
