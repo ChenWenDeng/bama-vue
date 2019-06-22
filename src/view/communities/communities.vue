@@ -21,12 +21,19 @@
         <span class="span2">{{showdata.hits}}次浏览</span>
       </div>-->
       <div class="ul">
-        <ul  v-if="lists.length > 0">
+        <!-- <ul  v-if="lists.length > 0">
           <li
             v-for="(item,index) in lists"
             :key="index"
             @click="push(item.id)"
           >{{lists[index].post_title}}</li>
+        </ul> -->
+        <ul  v-if="lists.length > 0">
+          <li
+            v-for="(item,index) in lists"
+            :key="index"
+            @click="push(item.id)"
+          v-html="item.post_title"></li>
         </ul>
       </div>
     </div>
@@ -109,8 +116,8 @@
 <script>
 import Vue from "vue";
 import HeaderTop from "../../components/headerTop";
-import { Tab, Tabs } from "vant";
-Vue.use(Tab).use(Tabs);
+import { Tab, Tabs ,Toast } from "vant";
+Vue.use(Tab).use(Tabs).use(Toast );
 export default {
   components: {
     HeaderTop
@@ -295,7 +302,9 @@ export default {
       font-size: 1rem;
     }
     ul {
+      width: 100%;
       li {
+        width: 100%;
         padding: 0.8rem 0.6rem;
         border-bottom: 1px solid #eeeeee;
         img {
@@ -310,6 +319,7 @@ export default {
           overflow: hidden;
           height: 5.8rem;
           position: relative;
+          padding-right: 1.25rem;
           .article-info {
             overflow: hidden;
             color: grey;
@@ -331,6 +341,8 @@ export default {
               font-size: 0.7rem;
               margin-right: 0.6rem;
               float: right;
+              color: grey;
+              margin-right: 1.25rem;
             }
           }
           .article-item-title {
@@ -342,6 +354,7 @@ export default {
             display: -webkit-box;
             -webkit-box-orient: vertical;
             -webkit-line-clamp: 1;
+            line-height: 1.5625rem;
           }
         }
       }

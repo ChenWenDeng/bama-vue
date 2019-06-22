@@ -1,10 +1,18 @@
 <template>
+<div>
     <van-row>
         <van-col class="category-item-cc" v-for="(value, key) in data" :key="key" span="6">
             <van-icon :name="value.image" :info="value.info"  @click="categoryItemClick(value)"/>
             <span @click="categoryItemClick(value)">{{value.title}}</span>
         </van-col>
     </van-row>
+    <!-- <ul>
+        <li class="category-item-cc" v-for="(value, key) in data" :key="key">
+            <img :src="value.image" alt="" @click="categoryItemClick(value)">
+            <span @click="categoryItemClick(value)">{{value.title}}</span>
+        </li>
+    </ul> -->
+</div>
 </template>
 
 <script>
@@ -22,7 +30,6 @@
 
         data() {
             return {
-
             }
         },
 
@@ -64,5 +71,4 @@
         line-height: 14px;
         color: #666666;
     }
-
 </style>

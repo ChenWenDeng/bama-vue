@@ -128,7 +128,10 @@ const url = {
         get_registration:'api/user/reserve',
 
         //热议话题
-        get_hotList:'api/portal/category/info'
+        get_hotList:'api/portal/category/info',
+
+        //用户信息
+        get_user_info:'api/user/profile/userInfo'
         
     }
 }
@@ -136,14 +139,13 @@ const url = {
 if (process.env.NODE_ENV === 'production') {
     url.host = 'http://watch.hualinginfo.com/';
     url.host2 = 'https://klzz.hualinginfo.com/';
+
 } else if (process.env.NODE_ENV === 'development') {
     url.host = '/health/'
     url.host2 = '/agent/'
 
 
-} else if (process.env.NODE_ENV === 'testing') {
-
-}
+} 
 export const getUrl = (key) => {
     if (!url.paths[key]) {
       return false;

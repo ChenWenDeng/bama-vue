@@ -1,6 +1,8 @@
 import {wxLoginReq, updateUserInfoReq} from "../../api/user";
 import storge from '../../utils/storge'
 import storage from '@/utils/storage'
+import { getUrl, getUrl2 } from '@/config/';
+import  { fetch } from '@/service/ajaxWrap'
 
 const state = {
     // token: null,
@@ -153,7 +155,7 @@ const mutations = {
                 return false;
             }
         }
-    }
+    },
 };
 
 const actions = {
@@ -167,7 +169,26 @@ const actions = {
     },
     userInfoUpdate: function ({commit}, userInfo) {
         commit('userInfoUpdate', userInfo);
-    }
+    },
+    //用户信息
+    getUserInfo({commit, dispatch}, data = {}) {
+        const params = {
+        }
+        fetch({commit,params, dispatch, method: 'get',
+            url: getUrl2('get_user_info'),
+            before() {
+            },
+            success ({ res, commit, dispatch }) {
+                data.scCallback && data.scCallback(res);
+                // console.log(res)
+            },
+            error ({ err, commit, dispatch }){
+            },
+            after () {
+                data.afterCallback && data.afterCallback()
+            }
+        })
+    },
 };
 
 export default {

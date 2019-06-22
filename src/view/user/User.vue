@@ -30,10 +30,10 @@
 import Vue from "vue";
 import { mapGetters, mapMutations, mapActions } from "vuex";
 
-import { Cell, CellGroup, Notify } from "vant";
+import { Cell, CellGroup, Notify ,Toast} from "vant";
 import storage from "@/utils/storage";
 
-Vue.use(Cell).use(CellGroup);
+Vue.use(Cell).use(CellGroup).use(Toast);
 
 Vue.use(Notify);
 
@@ -52,23 +52,44 @@ export default {
     }
   },
   mounted() {
-    var token = storage.localGet("token");
-    fetch("https://klzz.hualinginfo.com/api/user/profile/userInfo", {
-        method: "get",
-        headers: {
-          "XX-Token": token,
-          "XX-Device-Type": "wxapp"
-        },
-      })
-        .then(response => response.json())
-        .catch(error => console.error("Error:", error))
-        .then(response => {
-          this.userList = response.data
-        });
+    // var token = storage.localGet("token");
+    // fetch("https://klzz.hualinginfo.com/api/user/profile/userInfo", {
+    //     method: "get",
+    //     headers: {
+    //       "XX-Token": token,
+    //       "XX-Device-Type": "wxapp"
+    //     },
+    //   })
+    //     .then(response => response.json())
+    //     .catch(error => console.error("Error:", error))
+    //     .then(response => {
+    //       if(response.code==10001){
+    //         this.$router.push("/login")
+    //       }
+    //       this.userList = response.data
+    //     });
+    this.init()
   },
   created() {},
   watch: {},
   methods: {
+    //初始化
+    init(){
+      var vm = this
+      vm.$store.dispatch("user/getUserInfo", {
+          scCallback(res) {
+            if (res.code == 1) {
+              vm.userList = res.data
+              console.log(vm.userList)
+            } else if(res.code == 10001){
+              Toast('请先登录')
+            } else{
+              Toast(res.msg)
+            }
+          },
+          afterCallback() {}
+      });
+    },
     toUserInfo() {
       this.$router.push({
         name: "userInfo"

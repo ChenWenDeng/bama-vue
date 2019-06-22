@@ -276,7 +276,7 @@ export default {
 };
 </script>
 
-<style type="text/css" lang="scss">
+<style type="text/css">
 .userInfo .van-cell-group .van-cell,
 .user-box .van-cell-group .van-icon {
   font-size: 1rem;
@@ -314,29 +314,6 @@ export default {
 .userInfo .head-user-info .user-level {
   font-size: 0.8rem;
 }
-.shengRi-container{
-	display: flex;
-	width: 100%;
-	height: 50px;
-	background: #fff;
-	align-items: center;
-	border-top:1px solid #eeeeee;
-	span{
-		width: 88px;
-		margin-left: 24px;
-		color:#5f5f5f;
-		font-size: 1rem;
-		color:#5f5f5f;
-	}
-	input{
-		display: flex;
-		align-items: center;
-		width: 100%;
-		height: 45px;
-		border:none;
-		padding-left: 30px;
-	}
-}
 
 .userInfo .user-info-box {
   padding-top: 15px;
@@ -366,5 +343,31 @@ export default {
 
 .userInfo .user-info-box .user-info-item-right {
   overflow: hidden;
+}
+</style>
+
+<style lang="scss" scoped>
+.shengRi-container{
+	display: flex;
+	width: 100%;
+	height: 50px;
+	background: #fff;
+	align-items: center;
+	border-top:1px solid #eeeeee;
+	span{
+		width: 88px;
+		margin-left: 24px;
+		color:#5f5f5f;
+		font-size: 1rem;
+		color:#5f5f5f;
+	}
+	input{
+		display: flex;
+		align-items: center;
+		width: 100%;
+		height: 45px;
+		border:none;
+		padding-left: 30px;
+	}
 }
 </style>

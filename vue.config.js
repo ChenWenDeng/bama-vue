@@ -81,7 +81,6 @@ module.exports = {
             },
             '/agent': {
                 target: 'https://klzz.hualinginfo.com',
-                // target: 'cf.com',
                 // ws: true, 
                 changOrigin: true,
                 pathRewrite: {
