@@ -180,6 +180,7 @@ export default {
 .article-item-main-cc /deep/ .iconziyuan36:before {
   font-size: 0.7rem;
   padding-right: 0.2rem;
+  color: #C8C8C8;
 }
 .article-item-main-cc .iconfont {
   font-size: 0.7rem;

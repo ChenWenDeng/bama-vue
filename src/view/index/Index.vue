@@ -25,7 +25,7 @@
     </div> -->
     <van-swipe :autoplay="3000" style="margin-bottom:0.5rem;">
       <van-swipe-item v-for="(item, index) in carousel" :key="index">
-        <img v-lazy="item.image" style="width: 100%;height: 240px;">
+        <img v-lazy="item.image" style="width: 100%;height: 224px;">
       </van-swipe-item>
     </van-swipe>
 

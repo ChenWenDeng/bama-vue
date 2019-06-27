@@ -336,6 +336,7 @@ export default {
             /deep/ .iconziyuan36:before {
               font-size: 0.7rem;
               padding-right: 0.2rem;
+              color: #C8C8C8;
             }
             .iconziyuan36 {
               font-size: 0.7rem;

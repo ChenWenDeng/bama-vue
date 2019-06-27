@@ -23,7 +23,7 @@ const state = {
             name: 'home', 
             title: '答题', 
             active: 'iconfont iconziyuan14',
-            normal:'iconfont iconziyuan10',  
+            normal:'iconfont iconziyuan14',  
             path: ''
         }
     ],
