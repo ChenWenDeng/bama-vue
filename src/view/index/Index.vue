@@ -13,7 +13,7 @@
       </div>
       <div class="center-container" slot="center"></div>
       <div class="right-container" slot="right"></div>
-    </HeaderTop> -->
+    </HeaderTop>-->
     <!-- <div class="search-container">
       <div class="left-container">
         <i class="iconfont iconiconfontzhizuobiaozhun22"></i>
@@ -22,7 +22,7 @@
       <div class="right-container">
         <i class="iconfont iconxiaoxitongzhitixinglingshenglingdang"></i>
       </div>
-    </div> -->
+    </div>-->
     <van-swipe :autoplay="3000" style="margin-bottom:0.5rem;">
       <van-swipe-item v-for="(item, index) in carousel" :key="index">
         <img v-lazy="item.image" style="width: 100%;height: 224px;">
@@ -43,17 +43,15 @@
           :item="value"
           @click="read(value)"
         ></article-item-cc>
-      </van-list> -->
+      </van-list>-->
       <ul class="recommend-ul">
         <li v-for="(item,index) in circleRecommend" :key="index" @click="read(item)">
-          <img :src="item.thumbnail" alt="">
+          <img :src="item.thumbnail" alt>
           <p>{{item.post_title}}</p>
           <div class="bottom-container">
             <div class="left-container">
               <span>{{item.published_time}}</span>
-              <span class="iconfont iconziyuan36">
-                {{item.comment_count}}
-              </span>
+              <span class="iconfont iconziyuan36">{{item.comment_count}}</span>
             </div>
             <div class="right-container">
               <span v-if="item.tag.top">置顶</span>
@@ -97,7 +95,7 @@ import Vue from "vue";
 import { mapGetters, mapActions } from "vuex";
 import { Swipe, SwipeItem, Lazyload, List } from "vant";
 import ArticleItemCc from "../../components/Article-item-cc";
-import HeaderTop from '../../components/headerTop'
+import HeaderTop from "../../components/headerTop";
 
 // options 为可选参数，无则不传
 Vue.use(Lazyload, "");
@@ -180,8 +178,8 @@ export default {
 
       return true;
     },
-    _jump(){
-      this.$router.push("/search")
+    _jump() {
+      this.$router.push("/search");
     }
   }
 };
@@ -220,8 +218,8 @@ export default {
 </style>
 
 <style lang="scss" scoped>
-.container{
-  .search-container{
+.container {
+  .search-container {
     display: flex;
     z-index: 999;
     width: 100%;
@@ -230,99 +228,108 @@ export default {
     top: 3.375rem;
     left: 0;
     right: 0;
-    .left-container{
+    .left-container {
       width: 87%;
       height: 1.875rem;
       padding-left: 0.625rem;
-      .iconfont{
+      .iconfont {
         z-index: 99;
         position: absolute;
         top: 0.375rem;
         left: 6.625rem;
-        color:#C9C9C9;
+        color: #c9c9c9;
         font-weight: bold;
       }
-      input{
+      input {
         position: relative;
         width: 100%;
         height: 100%;
-        border:none;
+        border: none;
         padding: 0;
         border-radius: 3.125rem;
         text-align: center;
       }
-      input::-webkit-input-placeholder, textarea::-webkit-input-placeholder { 
-        /* WebKit browsers */ 
-        color: #C9C9C9; 
-        } 
-        input:-moz-placeholder, textarea:-moz-placeholder { 
-        /* Mozilla Firefox 4 to 18 */ 
-        color: #C9C9C9; 
-        } 
-        input::-moz-placeholder, textarea::-moz-placeholder { 
-        /* Mozilla Firefox 19+ */ 
-        color: #C9C9C9; 
-        } 
-        input:-ms-input-placeholder, textarea:-ms-input-placeholder { 
-        /* Internet Explorer 10+ */ 
-        color: #C9C9C9; 
+      input::-webkit-input-placeholder,
+      textarea::-webkit-input-placeholder {
+        /* WebKit browsers */
+        color: #c9c9c9;
+      }
+      input:-moz-placeholder,
+      textarea:-moz-placeholder {
+        /* Mozilla Firefox 4 to 18 */
+        color: #c9c9c9;
+      }
+      input::-moz-placeholder,
+      textarea::-moz-placeholder {
+        /* Mozilla Firefox 19+ */
+        color: #c9c9c9;
+      }
+      input:-ms-input-placeholder,
+      textarea:-ms-input-placeholder {
+        /* Internet Explorer 10+ */
+        color: #c9c9c9;
       }
     }
-    .right-container{
+    .right-container {
       display: flex;
       justify-content: center;
       align-items: center;
       width: 13%;
       height: 1.875rem;
-      i{
+      i {
         font-size: 1.1563rem;
         color: #fff;
       }
     }
   }
-  .recommend-ul{
+  .recommend-ul {
     width: 100%;
-    li{
-       width: 100%;
-      img{
+    /deep/ .iconziyuan36:before {
+      color: #c8c8c8;
+      font-size: 0.7rem;
+      padding-right: 0.2rem;
+    }
+    li {
+      width: 100%;
+      img {
         width: 100%;
         height: 8.9375rem;
       }
-      p{
+      p {
         font-size: 1.125rem;
-        color:#333333;
+        color: #333333;
         margin-top: 5px;
         line-height: 1.875rem;
       }
-      .bottom-container{
+      .bottom-container {
         display: flex;
         justify-content: space-between;
         align-items: center;
         width: 100%;
         padding-bottom: 1.25rem;
-        .left-container{
+        .left-container {
           display: flex;
           align-items: center;
           font-size: 0.625rem;
-          color:#6E6E6E;
-          .iconziyuan36{
+          color: #6e6e6e;
+          .iconziyuan36 {
             font-size: 0.6875rem;
             margin-left: 0.9375rem;
-            color:#6E6E6E;
+            color: #6e6e6e;
           }
         }
-        .right-container{
+        .right-container {
           display: flex;
           align-items: center;
-          span:nth-child(1){
-            border:0.0625rem solid #FF2C2C;
-            color:#FF2C2C;
+          span:nth-child(1) {
+            border: 0.0625rem solid #ff2c2c;
+            color: #ff2c2c;
           }
-          span:nth-child(2){
-            border:0.0625rem solid #4492FF;
-            color: #4492FF;
+          span:nth-child(2) {
+            border: 0.0625rem solid #4492ff;
+            color: #4492ff;
           }
-          span{
+          span {
             display: flex;
             justify-content: center;
             align-items: center;
