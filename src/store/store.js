@@ -14,6 +14,10 @@ import fillMessage from './modules/fillMessage'
 import registration from './modules/registration'
 import common from './modules/common'
 import communities from './modules/communities'
+import expert from './modules/expert'
+import expertVideo from './modules/expertVideo'
+import expertVideoDetails from './modules/expertVideoDetails'
+
 Vue.use(Vuex);
 
 const store = new Vuex.Store({
@@ -33,7 +37,10 @@ const store = new Vuex.Store({
         fillMessage,
         registration,
         common,
-        communities
+        communities,
+        expert,
+        expertVideo,
+        expertVideoDetails
     }
 });
 

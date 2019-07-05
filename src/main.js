@@ -7,9 +7,11 @@ import {store} from './store/store.js';
 
 import load_components from './components/load.js';
 
-import {Toast } from 'vant';
-Vue.use(Toast);
+// import {Toast } from 'vant';
+// Vue.use(Toast);
+import { Swipe, SwipeItem ,Card,Tab, Tabs ,Popup,Rate,Area,Uploader,DatetimePicker,Picker, List,Notify,Button, Toast ,ImagePreview ,Lazyload,AddressEdit  } from 'vant';
 
+Vue.use(Swipe).use(SwipeItem).use(Card).use(Tab).use(Tabs).use(Popup).use(Rate).use(Area).use(Uploader).use(DatetimePicker).use(Picker).use( List).use(Notify ).use(Button).use(Toast).use(ImagePreview).use(Lazyload).use(AddressEdit);
 
 load_components;
 

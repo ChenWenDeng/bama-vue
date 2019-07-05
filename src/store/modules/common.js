@@ -10,6 +10,7 @@ import {
 
 const state = {
     typeName: null,
+    commentList :[], //全部评论
 }
 
 const mutations = {
@@ -106,6 +107,41 @@ const actions = {
         })
     },
 
+    //全部评论
+    getAllPinLun({commit, dispatch, state, rootState}, data = {}) {
+        if (!data.data.id) data.data.id = data.data.id;
+        var pageRows = 20;
+        var old_length = state.commentList.length;
+        var timeOut = old_length == 0 ? 1 : 1200;
+        var page = parseInt(old_length / pageRows) + 1;
+       
+
+
+        let params={
+                    object_id :data.data.id,
+                    page:page,
+                    table_name:'portal_post',
+                    relation:'user'
+        }
+        fetch({commit,params, dispatch, method: 'get',
+            url: getUrl2('get_allPinLun'),
+            before() {
+                state.loading = true;
+            },
+            success ({ res, commit, dispatch }) {
+                state.commentList = res.data
+                data.scCallback && data.scCallback(res);
+            },
+            error ({ err, commit, dispatch }){
+            },
+            after () {
+                state.loading = false;
+                data.afterCallback && data.afterCallback()
+            }
+        })
+    },
+
+
     //收藏文章
     collectArticles({ commit, dispatch, state, rootState }, data = {}) {
         const params = {
@@ -173,6 +209,29 @@ const actions = {
             }
         })
     },
+    //是否收藏
+    isCollection({commit, dispatch, state, rootState}, data = {}) {
+        const params = {
+            table_name : 'portal_post',
+            object_id : data.data.id
+        }
+
+        fetch({commit,params, dispatch, method: 'get',
+            url: getUrl2('is_collection'),
+            before() {
+
+            },
+            success ({ res, commit, dispatch }) {
+                data.scCallback && data.scCallback(res);
+                console.log(res)
+            },
+            error ({ err, commit, dispatch }){
+            },
+            after () {
+                data.afterCallback && data.afterCallback()
+            }
+        })
+    },
 
     //点赞
     fabulous({ commit, dispatch, state, rootState }, data = {}) {
@@ -227,7 +286,9 @@ const actions = {
 }
 
 const getters = {
-
+    commentList(state){
+        return state.commentList
+    },
 }
 
 

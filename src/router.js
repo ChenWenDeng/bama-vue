@@ -158,6 +158,33 @@ const routes = [
             title: '老年社区'
         },
         props: true
+    },
+    {
+        name:'expert',
+        path:'/expert',
+        component: () => import('./view/expert/expert.vue'),
+        meta: {
+            title: '健康卫士'
+        },
+        props: true
+    },
+    {
+        name:'expertVideo',
+        path:'/expertVideo',
+        component: () => import('./view/expertVideo/expertVideo.vue'),
+        meta: {
+            title: '健康'
+        },
+        props: true
+    },
+    {
+        name:'expertVideoDetails',
+        path:'/expertVideoDetails',
+        component: () => import('./view/expertVideoDetails/expertVideoDetails.vue'),
+        meta: {
+            title: '健康详情'
+        },
+        props: true
     }
 ];
 

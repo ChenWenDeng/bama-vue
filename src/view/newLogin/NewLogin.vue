@@ -78,6 +78,7 @@ Vue.use(RadioGroup);
 Vue.use(Radio);
 Vue.use(Checkbox);
 Vue.use(CheckboxGroup);
+Vue.use(Toast);
 export default {
   name: "NewLogin",
   components: {
