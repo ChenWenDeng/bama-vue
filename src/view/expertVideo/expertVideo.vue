@@ -8,9 +8,7 @@
       <div
         class="search-container"
         slot="center"
-        v-for="(item,index) in expertVideoList[0]"
-        :key="index"
-      >{{item.category}}</div>
+       >{{expertVideoList[0].category}}</div>
       <div class="right-container" slot="right"></div>
     </HeaderTop>
     <section class="expertVideo-box">
