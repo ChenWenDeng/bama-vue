@@ -77,19 +77,19 @@ export default {
     }
     .expert-box{
         width: 100%;
-        margin: 2.75rem 0rem 3.375rem 0rem; 
+        margin:0.3125rem 0rem 0.3125rem 0rem; 
         ul{
-            width: 100%;
+            // width: 100%;
             display: flex;
             flex-wrap: wrap;
             justify-content: flex-start;
-            padding: 0rem 0.3125rem;
+            padding:0.3125rem 0 0.3125rem 0.3125rem;
             li{
                 display: flex;
                 flex-direction: column;
                 justify-content: space-between;
                 align-items:center;
-                width: 22%;
+                width: 30%;
                 height: 6.875rem;
                 background: #fff;
                 margin: 1.5% 1.5%;
@@ -110,7 +110,7 @@ export default {
                     font-size: 0.75rem;
                     color:#333333;
                     text-align: center;
-                    padding:0px 0.625rem;
+                    // padding:0px 0.625rem;
                     line-height: 19px;
                     margin-top: 0.1875rem;
                     justify-content: center;

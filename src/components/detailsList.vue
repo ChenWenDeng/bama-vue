@@ -104,7 +104,7 @@ export default {
 .video-box{
         width: 100%;
         background: #fff;
-        margin-bottom: 0.625rem;
+        // margin-bottom: 0.625rem;
         .video-div{
             width: 100%;
             video{

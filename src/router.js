@@ -164,7 +164,7 @@ const routes = [
         path:'/expert',
         component: () => import('./view/expert/expert.vue'),
         meta: {
-            title: '健康卫士'
+            title: '专家卫视'
         },
         props: true
     },

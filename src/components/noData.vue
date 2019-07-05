@@ -18,7 +18,7 @@ export default {
     justify-content: center;
     align-items: center;
     width: 100%;
-    padding: 20% 0rem;
+    // padding: 20% 0rem;
     i{
         font-size: 120px;
         color:#e0e0e0;
