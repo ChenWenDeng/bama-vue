@@ -185,6 +185,15 @@ const routes = [
             title: '健康详情'
         },
         props: true
+    },
+    {
+        name:'allComments',
+        path:'/allComments',
+        component: () => import('./view/allComments/allComments.vue'),
+        meta: {
+            title: '健康'
+        },
+        props: true
     }
 ];
 
