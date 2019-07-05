@@ -124,6 +124,6 @@ export default {
   position: fixed;
   width: 80%;
   left: 10%;
-  bottom: 190px;
+  bottom: 180px;
 }
 </style>
