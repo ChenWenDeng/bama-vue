@@ -2,7 +2,7 @@
   <div class="login">
     <HeaderTop>
       <div class="left-container" slot="left">
-        <router-link tag="i" to="/login" class="iconfont iconzuojiantou"></router-link>
+        <router-link tag="i" to="/login" class="iconfont icon-fanhui"></router-link>
         <span class="left-title">登录</span>
         <!-- <i @click="_jump" class="iconfont icon-fanhui"></i> -->
       </div>
@@ -203,7 +203,7 @@ export default {
 .login {
   background: #fff;
   height: 100%;
-  /deep/ .iconzuojiantou:before {
+  /deep/ .icon-fanhui:before {
     font-size: 1rem;
   }
   .header-container {
@@ -218,7 +218,7 @@ export default {
       }
     }
   }
-  .iconzuojiantou {
+  .icon-fanhui {
     margin-right: 0.625rem;
   }
   .logina {

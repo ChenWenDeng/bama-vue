@@ -2,7 +2,7 @@
   <div class="Elderly">
     <HeaderTop>
       <div class="left-container" slot="left">
-        <router-link tag="i" to="/" class="iconfont iconzuojiantou"></router-link>
+        <router-link tag="i" to="/" class="iconfont icon-fanhui"></router-link>
         <span class="left-title">老年社区</span>
         <!-- <i @click="_jump" class="iconfont icon-fanhui"></i> -->
       </div>

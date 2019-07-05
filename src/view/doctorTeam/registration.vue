@@ -2,7 +2,7 @@
   <div class="registration">
     <HeaderTop>
       <div class="left-container" slot="left">
-        <router-link tag="i" to="/doctorTeam" class="iconfont iconzuojiantou"></router-link>
+        <router-link tag="i" to="/doctorTeam" class="iconfont icon-fanhui"></router-link>
         <!-- <i @click="_jump" class="iconfont icon-fanhui"></i> -->
       </div>
       <div class="center-container" slot="center">预约</div>
@@ -159,7 +159,7 @@ export default {
     .center-container {
       color: rgba(51, 51, 51, 1);
     }
-    .iconzuojiantou:before {
+    .icon-fanhui:before {
       color: #666666;
     }
   }

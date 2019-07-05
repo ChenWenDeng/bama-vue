@@ -2,7 +2,7 @@
   <div class="fillMessage">
     <HeaderTop>
       <div class="left-container" slot="left">
-        <router-link tag="i" to="/login" class="iconfont iconzuojiantou"></router-link>
+        <router-link tag="i" to="/login" class="iconfont icon-fanhui"></router-link>
         <span>填写资料</span>
         <!-- <i @click="_jump" class="iconfont icon-fanhui"></i> -->
       </div>

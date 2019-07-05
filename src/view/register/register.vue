@@ -3,7 +3,7 @@
     <div class="container">
       <HeaderTop>
         <div class="left-container" slot="left">
-          <router-link tag="i" to="/NewLogin" class="iconfont iconzuojiantou">注册</router-link>
+          <router-link tag="i" to="/NewLogin" class="iconfont icon-fanhui">注册</router-link>
           <!-- <i @click="_jump" class="iconfont icon-fanhui"></i> -->
         </div>
         <div class="center-container" slot="center"></div>
@@ -214,10 +214,10 @@ export default {
     top: 12%;
     .header {
       height: auto;
-      .iconzuojiantou {
+      .icon-fanhui {
         font-size: 1.0625rem;
       }
-      .iconzuojiantou:before {
+      .icon-fanhui:before {
         margin-right: 0.625rem;
         font-size: 1rem;
       }
