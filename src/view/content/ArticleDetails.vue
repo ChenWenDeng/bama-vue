@@ -375,7 +375,7 @@ body {
 }
 
 .article-details-cc .content img {
-  width: 100%;
+  width: 100% !important;
   margin: 0;
   padding: 0;
 }
