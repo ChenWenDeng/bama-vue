@@ -376,6 +376,7 @@ body {
 
 .article-details-cc .content img {
   width: 100% !important;
+  height: 320px !important;
   margin: 0;
   padding: 0;
 }
