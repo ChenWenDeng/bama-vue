@@ -143,9 +143,15 @@ export default {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  display: -webkit-box;
+  /* display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 1;
+  -webkit-line-clamp: 1; */
+  height: 2.5rem;
+  overflow:hidden; 
+  text-overflow:ellipsis;
+  display:-webkit-box; 
+  -webkit-box-orient:vertical;
+  -webkit-line-clamp:2; 
 }
 
 .describe-cc {

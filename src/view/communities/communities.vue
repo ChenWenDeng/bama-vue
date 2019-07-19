@@ -49,11 +49,11 @@
             >
               <img :src="item.thumbnail" alt class="img1">
               <div class="article-cc">
-                <div style="padding-bottom: 4px; overflow: hidden;">
+                <div style="padding-bottom:4px; overflow: hidden;">
                   <div style="overflow: hidden;">
                     <h4 class="article-item-title">{{item.post_title}}</h4>
                   </div>
-                  <div style="float: right; margin-top: 2px;">
+                  <div style="float: right; margin-top: 2px;padding-bottom:12px;">
                     <span
                       class="van-tag van-tag--plain van-hairline--surround"
                       style="color: rgb(255, 44, 44);"
@@ -88,7 +88,7 @@
                   <div style="overflow: hidden;">
                     <h4 class="article-item-title">{{item.post_title}}</h4>
                   </div>
-                  <div style="float: right; margin-top: 2px;">
+                  <div style="float: right; margin-top: 2px;padding-bottom:12px;">
                     <span
                       class="van-tag van-tag--plain van-hairline--surround"
                       style="color: rgb(255, 44, 44);"
@@ -352,10 +352,16 @@ export default {
             margin: 0;
             padding: 0;
             overflow: hidden;
+            // display: -webkit-box;
+            // -webkit-box-orient: vertical;
+            // -webkit-line-clamp: 1;
+            //line-height: 1.5625rem;
+             height: 2.5rem;
+            overflow: hidden;
+            text-overflow: ellipsis;
             display: -webkit-box;
             -webkit-box-orient: vertical;
-            -webkit-line-clamp: 1;
-            line-height: 1.5625rem;
+            -webkit-line-clamp: 2;
           }
         }
       }
