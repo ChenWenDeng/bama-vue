@@ -15,7 +15,7 @@
     "require-context": "^1.1.0",
     "sass-loader": "^7.1.0",
     "semver": "^6.1.1",
-    "vant": "^1.6.21",
+    "vant": "^2.1.8",
     "vshare": "^2.0.0",
     "vue": "^2.5.22",
     "vue-router": "^3.0.1",
